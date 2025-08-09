@@ -93,11 +93,86 @@
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.08);
       transition: box-shadow .2s ease;
+      text-decoration:none;
+      display:inline-block;
     }
     .tag:focus, .tag:hover{outline:none; box-shadow: var(--ring)}
     .hint{color:var(--muted); font-size:13px; margin-top:14px}
     @media (max-width:520px){
       header{flex-direction:column; text-align:center}
+    }
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+    @media print {
+      html, body {
+        background: #ffffff !important;
+        color: #111111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 12pt;
+      }
+      .wrap{
+        max-width: none;
+        width: auto;
+      }
+      .card{
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+      header{
+        padding: 0 0 8mm 0 !important;
+      }
+      header img{
+        box-shadow: none !important;
+      }
+      .section{
+        padding: 0 0 8mm 0 !important;
+      }
+      .section h2{
+        color:#111111 !important;
+        font-size: 16pt !important;
+        margin: 0 0 4mm 0 !important;
+      }
+      .grid{
+        gap: 6mm !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+      .tech{
+        background: #ffffff !important;
+        border: 1px solid #d0d7de !important;
+        box-shadow: none !important;
+        transform: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .tech h3{
+        color: #0f172a !important;
+        font-size: 12pt !important;
+        margin-bottom: 3mm !important;
+      }
+      .tag{
+        background: #f3f4f6 !important;
+        color: #111111 !important;
+        border: 1px solid #d1d5db !important;
+      }
+      a.tag{
+        text-decoration: underline !important;
+      }
+      .hint{
+        color:#374151 !important;
+      }
+      /* Ocultar elementos interactivos que no aportan en papel */
+      button.tag{
+        background:#111111 !important;
+        color:#ffffff !important;
+        border-color:#111111 !important;
+        text-decoration:none !important;
+      }
     }
   </style>
 </head>
@@ -259,8 +334,8 @@
           </div>
         </div>
       </section>
-    
-            <!-- Link GitHub -->
+
+      <!-- Link GitHub -->
       <section class="section" id="github">
         <h2>GitHub</h2>
         <div class="grid">
@@ -276,7 +351,7 @@
         </div>
       </section>
 
-          <!-- Link LinkedIn -->
+      <!-- Link LinkedIn -->
       <section class="section" id="linkedin">
         <h2>LinkedIn</h2>
         <div class="grid">
@@ -292,14 +367,14 @@
         </div>
       </section>
 
-          <!-- Link Email -->
+      <!-- Link Email -->
       <section class="section" id="email">
         <h2>Correo electrónico</h2>
         <div class="grid">
           <div class="tech">
             <h3>Contacto directo</h3>
             <div class="tags">
-              <a class="tag" href="juanletona@ufm.edu">
+              <a class="tag" href="mailto:juanletona@ufm.edu">
                 Enviar correo
               </a>
             </div>
@@ -307,6 +382,47 @@
           </div>
         </div>
       </section>
+
+              <!-- Extra: Imagen en navegador y descarga PDF -->
+      <section class="section" id="extra">
+        <h2>Extras</h2>
+        <div class="grid">
+          <div class="tech">
+            <h3>Visualización de imagen</h3>
+            <div class="tags">
+              <a class="tag" href="IMGJD.webp" target="_blank" rel="noopener noreferrer">
+                Abrir imagen en el navegador
+              </a>
+            </div>
+            <div class="hint">Visualizar la imagen de perfil en resolución completa.</div>
+          </div>
+          <div class="tech">
+            <h3>Descargar en PDF</h3>
+            <div class="tags">
+              <button class="tag" onclick="window.print()">
+                Descargar como PDF
+              </button>
+            </div>
+            <div class="hint">Generar y descargar una copia en PDF del perfil mostrado.</div>
+          </div>
+        </div>
+      </section>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script>
+        document.getElementById('downloadPdf').addEventListener('click', () => {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.setFontSize(16);
+          doc.text("Perfil - Juan Diego Letona", 20, 20);
+          doc.setFontSize(12);
+          doc.text("Estudiante de Computer Science en la Universidad Francisco Marroquín", 20, 30);
+          doc.text("GitHub: https://github.com/TU_USUARIO", 20, 40);
+          doc.text("LinkedIn: https://www.linkedin.com/in/juandiego-letona/", 20, 50);
+          doc.text("Email: tu.correo@example.com", 20, 60);
+          doc.save("JuanDiegoLetona.pdf");
+        });
+      </script>
 
 
     </div>
