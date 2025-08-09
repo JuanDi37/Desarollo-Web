@@ -1,36 +1,188 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Juan Diego Letona</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            margin-top: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil | Juan Diego Letona</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#111827;
+      --muted:#9aa4b2;
+      --text:#e5eef7;
+      --accent:#60a5fa;
+      --ring: 0 0 0 2px rgba(96,165,250,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(96,165,250,.10), transparent), var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px 20px;
+    }
+    .wrap{
+      width:100%;
+      max-width:980px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      overflow:clip;
+    }
+    header{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      padding:30px;
+      backdrop-filter: blur(6px);
+    }
+    header img{
+      width:120px;height:120px;border-radius:16px;object-fit:cover;
+      box-shadow: 0 10px 18px rgba(0,0,0,.35);
+    }
+    header .meta h1{margin:0;font-size:28px;line-height:1.1}
+    header .meta p{margin:6px 0 0;color:var(--muted)}
+    .section{
+      padding:10px 30px 30px;
+    }
+    .section h2{
+      margin:8px 0 16px;
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:.2px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap:16px;
+    }
+    .tech{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:16px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .tech:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.35);
+      border-color: rgba(96,165,250,.35);
+    }
+    .tech h3{
+      margin:0 0 10px;
+      font-size:15px;
+      color:var(--accent);
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
+    .tags{
+      display:flex;flex-wrap:wrap;gap:8px;
+    }
+    .tag{
+      font-size:12px;
+      color:var(--text);
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      transition: box-shadow .2s ease;
+    }
+    .tag:focus, .tag:hover{outline:none; box-shadow: var(--ring)}
+    .hint{color:var(--muted); font-size:13px; margin-top:14px}
+    @media (max-width:520px){
+      header{flex-direction:column; text-align:center}
+    }
+  </style>
 </head>
 <body>
-    <img src="IMGJD.webp" alt="Foto de Juan Diego Letona">
-    <h1>Juan Diego Letona</h1>
+  <main class="wrap">
+    <div class="card">
+      <header>
+        <img src="IMGJD.webp" alt="Foto de Juan Diego Letona">
+        <div class="meta">
+          <h1>Juan Diego Letona</h1>
+          <p>Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
+        </div>
+      </header>
+
+      <!-- Commit 2: Tecnologías -->
+      <section class="section" id="tecnologias">
+        <h2>Tecnologías</h2>
+        <div class="grid">
+
+          <!-- En memoria / temporales -->
+          <div class="tech">
+            <h3>Bases de datos · En memoria / temporales</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">Redis</span>
+              <span class="tag" tabindex="0">Memcached</span>
+            </div>
+            <div class="hint">Bases de datos para almacenamiento en caché, colas y sesiones.</div>
+          </div>
+
+          <!-- Relacionales (SQL) -->
+          <div class="tech">
+            <h3>Bases de datos · Relacionales (SQL)</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">PostgreSQL</span>
+              <span class="tag" tabindex="0">MySQL</span>
+              <span class="tag" tabindex="0">SQLite</span>
+              <span class="tag" tabindex="0">SQL Server</span>
+            </div>
+            <div class="hint">Bases de datos con esquema estructurado e integridad referencial.</div>
+          </div>
+
+          <!-- NoSQL / no relacionales -->
+          <div class="tech">
+            <h3>Bases de datos · NoSQL / No relacionales</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">MongoDB</span>
+              <span class="tag" tabindex="0">Cassandra</span>
+            </div>
+            <div class="hint">Bases de datos flexibles para grandes volúmenes y diferentes patrones de acceso.</div>
+          </div>
+
+          <!-- Contenedores / DevOps -->
+          <div class="tech">
+            <h3>Contenedores y DevOps</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">Docker</span>
+              <span class="tag" tabindex="0">Docker Compose</span>
+            </div>
+            <div class="hint">Empaquetado reproducible y despliegues consistentes.</div>
+          </div>
+
+          <!-- Nube & Almacenamiento -->
+          <div class="tech">
+            <h3>Servicios en la nube y almacenamiento</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">AWS</span>
+              <span class="tag" tabindex="0">S3</span>
+              <span class="tag" tabindex="0">Azure</span>
+            </div>
+            <div class="hint">Infraestructura escalable y servicios gestionados.</div>
+          </div>
+
+          <!-- Diseño / Producto -->
+          <div class="tech">
+            <h3>Diseño y producto</h3>
+            <div class="tags">
+              <span class="tag" tabindex="0">Figma</span>
+            </div>
+            <div class="hint">Herramienta para prototipado y diseño colaborativo.</div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </main>
 </body>
 </html>
