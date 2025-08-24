@@ -127,7 +127,7 @@ nav {
 }
 
 /*definimos el contenedor principal como grid para controlar la disposición de las secciones,
-  empezamos con una sola columna para móviles y dejamos un gap cómodo entre bloques*/
+  empezamos con una sola columna como base mobile-first para garantizar legibilidad en pantallas pequeñas*/
 main {
   display: grid;
   grid-template-columns: 1fr;
@@ -135,35 +135,35 @@ main {
   padding: 0 16px;
 }
 
-/*activamos dos columnas a partir de un ancho medio para aprovechar mejor el espacio horizontal,
-  y retiramos el margin auto de las secciones para que el grid controle el flujo*/
-@media (min-width: 900px) {
-  main {
-    grid-template-columns: 1fr 1fr;
-  }
-  section {
-    margin: 0;
-    max-width: none;
-  }
-}
-
-/*alineamos la sección de presentación con flexbox para disponer la imagen y el bloque de texto en fila cuando haya espacio, y permitir que se apilen en pantallas pequeñas*/
+/*alineamos la sección de presentación con flexbox para disponer la imagen y el texto, pero en móvil preferimos columna para evitar compresión horizontal*/
 main > section:first-of-type {
   display: flex;
   align-items: center;
   gap: 16px;
-  flex-wrap: wrap; /*permitimos que elementos bajen a la siguiente línea si el ancho es limitado*/
+  flex-direction: column; /*mantenemos pila vertical en mobile para priorizar lectura*/
 }
 
-/*limitamos el tamaño de la imagen para mantener proporción y evitar que rompa el layout en dispositivos angostos*/
 main > section:first-of-type img {
   width: 120px;
   height: auto;
   border-radius: 8px;
 }
 
-/*reservamos un poco más de aire entre el título y el párrafo dentro de la presentación para mejorar la lectura*/
-main > section:first-of-type h2 {
-  margin-top: 0;
-  margin-bottom: 8px;
+/*optimizamos tablas en móviles permitiendo desplazamiento horizontal sin romper el diseño
+  ya que no contamos con un contenedor extra, usamos el propio table como bloque desplazable*/
+@media (max-width: 480px) {
+  /*reducimos tamaño del título para que no haya saltos bruscos*/
+  header h1 { font-size: 1.6rem; }
+
+  /*compactamos navegación para que quepa mejor en una línea o dos sin saturar*/
+  nav a { margin: 0 6px; }
+
+  /*ajustamos aire interno para que el contenido no se sienta apretado ni demasiado suelto*/
+  section { padding: 20px; margin: 16px auto; }
+
+  /*hacemos que la tabla se pueda desplazar si no cabe en ancho, preservando legibilidad de columnas*/
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+
+  /*disminuimos ligeramente el padding de celdas para aprovechar el ancho reducido*/
+  th, td { padding: 10px; }
 }
