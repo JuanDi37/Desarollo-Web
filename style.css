@@ -116,3 +116,12 @@ footer {
   margin-top: 30px;
   font-size: 0.9rem;
 }
+
+/*organizamos la barra de navegación con flexbox para que enlaces y botón se distribuyan de forma uniforme en una sola línea y se adapten al ancho disponible*/
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap; /*permitimos salto de línea cuando no hay espacio suficiente*/
+}
