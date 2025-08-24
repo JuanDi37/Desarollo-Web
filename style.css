@@ -1,7 +1,9 @@
-/*importamos una tipografía moderna desde google fonts para darle un aspecto más profesional*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/*aplicamos la nueva tipografía y un fondo más claro para que contraste mejor*/
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   background-color: #eef2f7;
@@ -11,7 +13,6 @@ body {
   line-height: 1.7;
 }
 
-/*rediseñamos el encabezado con un degradado para hacerlo más atractivo visualmente*/
 header {
   background: linear-gradient(90deg, #1e3a8a, #2563eb);
   color: white;
@@ -20,14 +21,20 @@ header {
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-/*ajustamos el tamaño de la fuente del título principal para que tenga más jerarquía*/
 header h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
 }
 
-/*mejoramos los enlaces de navegación con más separación y efecto hover más elegante*/
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 nav a {
   color: white;
   text-decoration: none;
@@ -41,7 +48,6 @@ nav a:hover {
   border-bottom: 2px solid #cbd5e1;
 }
 
-/*diseñamos botones con un estilo más llamativo y animación de sombra al pasar el mouse*/
 button {
   background: linear-gradient(90deg, #2563eb, #1d4ed8);
   color: white;
@@ -60,28 +66,31 @@ button:hover {
   box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
 
-/*aumentamos la separación de secciones y damos un estilo más parecido a tarjetas*/
+button:active { 
+  transform: scale(0.98);
+}
+
 section {
-  padding: 28px;
-  margin: 28px auto;
+  /*compactamos tarjetas para reducir huecos excesivos y suavizamos la sombra*/
+  padding: 20px;                 /* cambiado */
+  margin: 16px auto;             /* cambiado */
   max-width: 900px;
   background-color: white;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-radius: 8px;            /* cambiado */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* cambiado */
 }
 
-/*estilizamos los títulos de sección con un degradado aplicado al texto*/
 section h2 {
   font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  /*ajustamos separación del título para acercarlo al contenido y compactar la tarjeta*/
+  margin-bottom: 10px;           /* cambiado */
   background: linear-gradient(90deg, #2563eb, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/*rediseñamos las tablas para que se vean más modernas, con esquinas redondeadas y sombra*/
 table {
   width: 100%;
   border-collapse: collapse;
@@ -107,7 +116,11 @@ tbody tr:nth-child(even) {
   background-color: #f3f6fa;
 }
 
-/*hacemos que el pie de página tenga el mismo estilo degradado que el header*/
+tbody tr:hover {
+  /*hacemos más sobrio el hover para que no distraiga ni salte visualmente*/
+  background-color: #eef5ff;     /* cambiado */
+}
+
 footer {
   text-align: center;
   padding: 20px;
@@ -115,27 +128,31 @@ footer {
   color: white;
   margin-top: 30px;
   font-size: 0.9rem;
+  /*forzamos que el footer abarque todo el ancho del grid aunque esté dentro de main*/
+  grid-column: 1 / -1;           /* cambiado */
 }
 
-/*organizamos la barra de navegación con flexbox para que enlaces y botón se distribuyan de forma uniforme en una sola línea y se adapten al ancho disponible*/
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-/*definimos el contenedor principal como grid para controlar la disposición de las secciones,
-  establecemos base de una columna; los puntos de quiebre ajustarán columnas y ritmos*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*estructura principal compacta y sin huecos exagerados*/
 main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  padding: 0 16px;
+  gap: 16px;                     /* cambiado */
+  padding: 0 12px;               /* cambiado */
 }
 
-/*alineamos la sección de presentación con flexbox; en desktop reforzamos distribución horizontal y aire*/
+/*presentación: en móvil dejamos columna; ajustamos a fila en pantallas medianas para evitar huecos */
 main > section:first-of-type {
   display: flex;
   align-items: center;
@@ -149,24 +166,53 @@ main > section:first-of-type img {
   border-radius: 8px;
 }
 
-/*activamos el modo desktop asegurando dos columnas, mayor separación, tipografía más cómoda
-  y jerarquía más marcada para aprovechar pantallas grandes*/
-@media (min-width: 1024px) {
-  /*dos columnas con mayor respiración entre tarjetas*/
-  main { grid-template-columns: 1fr 1fr; gap: 32px; padding: 0 24px; }
-
-  /*tipografía más grande para mejorar legibilidad en distancias típicas de escritorio*/
-  body { line-height: 1.85; }
-  header h1 { font-size: 2.2rem; }
-  section h2 { font-size: 1.8rem; }
-
-  /*la sección de presentación se organiza naturalmente en fila con más separación visual*/
-  main > section:first-of-type { flex-direction: row; gap: 20px; }
-  main > section:first-of-type img { width: 140px; }
+/*tablet y superiores: ponemos la presentación en fila para un flujo más natural*/
+@media (min-width: 768px) {
+  main > section:first-of-type {  /* cambiado */
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+  main > section:first-of-type img {
+    width: 120px;                 /* mantenemos tamaño estable para evitar saltos */
+  }
 }
 
-/*afinamos un nivel extra para escritorios anchos, donde podemos permitir más espacio y un ritmo visual más amable sin romper el flujo*/
+/*layout de dos columnas estable en >=900px y retirada de márgenes que rompían el grid*/
+@media (min-width: 900px) {
+  main {                          /* cambiado */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  section {                       /* cambiado */
+    margin: 0;
+    max-width: none;
+  }
+}
+
+/*desktop grande: un poco más de respiro pero sin volver a huecos enormes*/
 @media (min-width: 1280px) {
-  main { gap: 36px; padding: 0 32px; }
-  section { padding: 32px; }
+  main {                          /* cambiado */
+    gap: 24px;
+    padding: 0 28px;
+  }
+}
+
+/*preferencias de movimiento reducido*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*impresión clara y económica*/
+@media print {
+  body { background: #ffffff !important; color: #111 !important; line-height: 1.5; }
+  header, footer { background: none !important; color: #111 !important; box-shadow: none !important; }
+  section { box-shadow: none !important; border: 1px solid #ccc !important; }
+  a { color: #111 !important; text-decoration: underline; }
+  button { display: none !important; }
 }
