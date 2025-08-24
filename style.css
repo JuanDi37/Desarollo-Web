@@ -123,5 +123,26 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  flex-wrap: wrap; /*permitimos salto de línea cuando no hay espacio suficiente*/
+  flex-wrap: wrap;
+}
+
+/*definimos el contenedor principal como grid para controlar la disposición de las secciones,
+  empezamos con una sola columna para móviles y dejamos un gap cómodo entre bloques*/
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 0 16px; /*agregamos margen interno lateral para que el contenido no pegue contra los bordes en pantallas pequeñas*/
+}
+
+/*activamos dos columnas a partir de un ancho medio para aprovechar mejor el espacio horizontal,
+  y retiramos el margin auto de las secciones para que el grid controle el flujo*/
+@media (min-width: 900px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+  section {
+    margin: 0;
+    max-width: none; /*permitimos que las tarjetas llenen su celda de la cuadrícula*/
+  }
 }
