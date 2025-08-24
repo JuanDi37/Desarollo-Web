@@ -1,98 +1,118 @@
-/*definimos un estilo global para el cuerpo manteniendo tipografía clara y agregando un color de fondo neutro
-  que genera contraste con las secciones blancas y mejora la lectura*/
+/*importamos una tipografía moderna desde google fonts para darle un aspecto más profesional*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/*aplicamos la nueva tipografía y un fondo más claro para que contraste mejor*/
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f7fa;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  background-color: #eef2f7;
   color: #222;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/*ajustamos el encabezado con un azul más oscuro y centramos el contenido
-  para dar sensación de bloque principal bien definido*/
+/*rediseñamos el encabezado con un degradado para hacerlo más atractivo visualmente*/
 header {
-  background-color: #1e3a8a;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
   color: white;
-  padding: 16px;
+  padding: 24px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /*agregamos una ligera sombra para destacar el header*/
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-/*damos estilo a la navegación y dejamos los enlaces blancos
-  para que resalten sobre el fondo oscuro del header*/
+/*ajustamos el tamaño de la fuente del título principal para que tenga más jerarquía*/
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/*mejoramos los enlaces de navegación con más separación y efecto hover más elegante*/
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 8px;
-  font-weight: bold;
-  transition: color 0.3s ease; /*hacemos que el cambio de color sea más suave*/
+  margin: 0 10px;
+  font-weight: 600;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
-  color: #cbd5e1; /*cambiamos a un tono gris claro al pasar el mouse*/
+  color: #cbd5e1;
+  border-bottom: 2px solid #cbd5e1;
 }
 
-/*definimos un estilo básico para botones con fondo azul y texto blanco,
-  además de un ligero redondeo de esquinas*/
+/*diseñamos botones con un estilo más llamativo y animación de sombra al pasar el mouse*/
 button {
-  background-color: #2563eb;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #1e40af;
-  transform: translateY(-2px); /*agregamos un efecto de elevación al hacer hover*/
+  background: linear-gradient(90deg, #1d4ed8, #1e3a8a);
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
 
-/*definimos secciones con fondo blanco, bordes redondeados y sombra
-  para que cada bloque se vea como una tarjeta separada*/
+/*aumentamos la separación de secciones y damos un estilo más parecido a tarjetas*/
 section {
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
+  padding: 28px;
+  margin: 28px auto;
+  max-width: 900px;
   background-color: white;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /*agregamos sombra ligera a cada sección*/
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/*estilizamos las tablas para que sean claras y fáciles de leer*/
+/*estilizamos los títulos de sección con un degradado aplicado al texto*/
+section h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/*rediseñamos las tablas para que se vean más modernas, con esquinas redondeadas y sombra*/
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/*definimos bordes finos y espaciado interno en celdas*/
 th, td {
-  border: 1px solid #999;
-  padding: 10px;
+  border: 1px solid #ddd;
+  padding: 12px;
   text-align: left;
 }
 
-/*coloreamos la fila del encabezado con azul para destacar títulos*/
 th {
-  background-color: #2563eb;
+  background: #2563eb;
   color: white;
+  font-weight: 600;
 }
 
-/*aplicamos efecto zebra para mejorar legibilidad en filas*/
 tbody tr:nth-child(even) {
-  background-color: #f0f4f8;
+  background-color: #f3f6fa;
 }
 
-/*centramos y decoramos el pie de página con el mismo azul del header*/
+/*hacemos que el pie de página tenga el mismo estilo degradado que el header*/
 footer {
   text-align: center;
-  padding: 16px;
-  background-color: #1e3a8a;
+  padding: 20px;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
 }
