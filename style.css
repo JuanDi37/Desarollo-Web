@@ -123,47 +123,5 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  flex-wrap: wrap;
-}
-
-/*definimos el contenedor principal como grid para controlar la disposición de las secciones,
-  empezamos con una sola columna para móviles y dejamos un gap cómodo entre bloques*/
-main {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  padding: 0 16px;
-}
-
-/*activamos dos columnas a partir de un ancho medio para aprovechar mejor el espacio horizontal,
-  y retiramos el margin auto de las secciones para que el grid controle el flujo*/
-@media (min-width: 900px) {
-  main {
-    grid-template-columns: 1fr 1fr;
-  }
-  section {
-    margin: 0;
-    max-width: none;
-  }
-}
-
-/*alineamos la sección de presentación con flexbox para disponer la imagen y el bloque de texto en fila cuando haya espacio, y permitir que se apilen en pantallas pequeñas*/
-main > section:first-of-type {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap; /*permitimos que elementos bajen a la siguiente línea si el ancho es limitado*/
-}
-
-/*limitamos el tamaño de la imagen para mantener proporción y evitar que rompa el layout en dispositivos angostos*/
-main > section:first-of-type img {
-  width: 120px;
-  height: auto;
-  border-radius: 8px;
-}
-
-/*reservamos un poco más de aire entre el título y el párrafo dentro de la presentación para mejorar la lectura*/
-main > section:first-of-type h2 {
-  margin-top: 0;
-  margin-bottom: 8px;
+  flex-wrap: wrap; /*permitimos salto de línea cuando no hay espacio suficiente*/
 }
