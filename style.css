@@ -1,0 +1,79 @@
+/*agregamos un estilo general de fuente y fondo*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/*colocamos el encabezado con color de fondo y espaciado*/
+header {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 16px;
+  text-align: center;
+}
+
+/*ponemos estilo a la navegación dentro del header*/
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/*colocamos botones con color distintivo*/
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+/*agregamos estilo a las secciones principales*/
+section {
+  padding: 20px;
+  margin: 12px auto;
+  max-width: 800px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/*colocamos estilo a las tablas*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #2563eb;
+  color: white;
+}
+
+/*agregamos estilo al pie de página*/
+footer {
+  text-align: center;
+  padding: 16px;
+  background-color: #1e3a8a;
+  color: white;
+}

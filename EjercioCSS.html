@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | Juan Diego Letona</title>
+  <!--incluimos un link al archivo style.css para separar la estructura del contenido visual,
+      de esta manera logramos mantener el html limpio y el css centralizado en un solo lugar-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--abrimos el encabezado principal donde vamos a mostrar el título de la página y la navegación,
+      esto ayuda a que el usuario siempre tenga acceso rápido a las secciones importantes del cv-->
+  <header>
+    <h1>Perfil | Juan Diego Letona</h1>
+    <nav>
+      <!--colocamos los enlaces internos que nos permiten movernos por las distintas secciones,
+          preferimos mantenerlos en línea para que sean fáciles de escanear visualmente-->
+      <a href="#educacion">Educación</a> |
+      <a href="#tecnologias">Tecnologías</a> |
+      <a href="#lenguajes">Lenguajes</a> |
+      <a href="#softskills">Soft Skills</a> |
+      <a href="#github">GitHub</a> |
+      <a href="#linkedin">LinkedIn</a> |
+      <a href="#email">Email</a>
+      <!--agregamos este botón para poder imprimir o exportar el cv directamente desde el navegador,
+          esto resulta útil cuando alguien quiere una copia rápida sin necesidad de otro software-->
+      <button onclick="window.print()">Descargar PDF</button>
+    </nav>
+  </header>
+
+  <!--iniciamos la sección principal que contendrá toda la información del perfil y la dividimos en bloques-->
+  <main>
+    <!--mostramos una primera sección tipo presentación con foto, nombre, descripción breve y accesos directos-->
+    <section>
+      <img src="IMGJD.webp" alt="Foto de Juan Diego Letona" width="120">
+      <h2>Juan Diego Letona</h2>
+      <p>Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
+      <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
+      <a href="mailto:juanletona@ufm.edu">Contactar</a> |
+      <a href="https://github.com/JuanDi37" target="_blank">GitHub</a> |
+      <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank">LinkedIn</a>
+    </section>
+
+    <!--creamos la sección de educación donde usamos una tabla,
+        porque queremos mostrar claramente año, institución y título en un formato ordenado-->
+    <section id="educacion">
+      <h2>Educación</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Institución</th>
+            <th>Título</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2022</td>
+            <td>Colegio Valle Verde (High School)</td>
+            <td>Bachillerato</td>
+          </tr>
+          <tr>
+            <td>2023 - 2026</td>
+            <td>Universidad Francisco Marroquín</td>
+            <td>Licenciatura en Computer Science (en curso)</td>
+          </tr>
+          <tr>
+            <td>2024</td>
+            <td>Universidad Francisco Marroquín</td>
+            <td>Scrum and Agile Methodologies</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!--añadimos sección de experiencia laboral,
+        reutilizamos la tabla porque también necesitamos columnas con periodo, empresa y puesto-->
+    <section id="experiencia">
+      <h2>Experiencia Laboral</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Periodo</th>
+            <th>Empresa</th>
+            <th>Puesto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024 – Actualidad</td>
+            <td>LV Corp</td>
+            <td>Software Engineer · Desarrollo web a la medida</td>
+          </tr>
+          <tr>
+            <td>2022 – 2023</td>
+            <td>Tech Solutions</td>
+            <td>Desarrollador Backend · APIs y microservicios</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!--definimos la sección de tecnologías y preferimos usar listas no ordenadas
+        porque es un conjunto de elementos sin jerarquía estricta pero agrupados por categorías-->
+    <section id="tecnologias">
+      <h2>Tecnologías</h2>
+      <ul>
+        <li>Bases de datos · En memoria: Redis, Memcached</li>
+        <li>Bases de datos · Relacionales: PostgreSQL, MySQL, SQLite, SQL Server</li>
+        <li>Bases de datos · NoSQL: MongoDB, Cassandra</li>
+        <li>Contenedores y DevOps: Docker, Docker Compose</li>
+        <li>Servicios en la nube: AWS, S3, Azure</li>
+        <li>Diseño y producto: Figma</li>
+      </ul>
+    </section>
+
+    <!--creamos la sección de lenguajes donde listamos categorías de programación,
+        esto hace que sea más legible y más fácil de encontrar lo que alguien busca-->
+    <section id="lenguajes">
+      <h2>Lenguajes de programación</h2>
+      <ul>
+        <li>Compilados: C, C++, C#, Java</li>
+        <li>Frontend: JavaScript, TypeScript, HTML, CSS</li>
+        <li>Scripting y análisis: Python, R, MATLAB, Octave, Bash, PowerShell</li>
+      </ul>
+    </section>
+
+    <!--agregamos sección de soft skills para destacar cualidades no técnicas,
+        estas las ponemos en lista porque son varias competencias de igual relevancia-->
+    <section id="softskills">
+      <h2>Soft Skills</h2>
+      <ul>
+        <li>Colaboración: Trabajo en equipo, Comunicación efectiva, Escucha activa</li>
+        <li>Liderazgo: Gestión de proyectos, Motivación de equipo, Toma de decisiones</li>
+        <li>Sociabilidad: Networking, Resolución de conflictos, Empatía</li>
+        <li>Adaptabilidad: Aprendizaje continuo, Flexibilidad, Gestión del cambio</li>
+        <li>Pensamiento crítico: Análisis de problemas, Decisiones informadas, Evaluación objetiva</li>
+        <li>Gestión del tiempo: Organización, Priorización, Cumplimiento de plazos</li>
+      </ul>
+    </section>
+
+    <!--insertamos un bloque exclusivo para github porque es importante mostrar proyectos públicos-->
+    <section id="github">
+      <h2>GitHub</h2>
+      <a href="https://github.com/JuanDi37" target="_blank">Visitar perfil en GitHub</a>
+    </section>
+
+    <!--hacemos lo mismo con linkedin para resaltar el perfil profesional en esa red-->
+    <section id="linkedin">
+      <h2>LinkedIn</h2>
+      <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank">Visitar perfil en LinkedIn</a>
+    </section>
+
+    <!--incluimos también un acceso rápido al correo electrónico para facilitar contacto directo-->
+    <section id="email">
+      <h2>Correo electrónico</h2>
+      <a href="mailto:juanletona@ufm.edu">Enviar correo</a>
+    </section>
+
+    <!--añadimos extras como la imagen en tamaño completo y otro botón de descarga en pdf,
+        así damos más opciones al usuario sin tener que buscar demasiado-->
+    <section id="extra">
+      <h2>Extras</h2>
+      <a href="IMGJD.webp" target="_blank">Abrir imagen en el navegador</a> |
+      <button onclick="window.print()">Descargar como PDF</button>
+    </section>
+
+    <!--cerramos con un pie de página donde mostramos autoría y ubicación-->
+    <footer>
+      <p>© <span id="y"></span> Juan Diego Letona · Guatemala</p>
+    </footer>
+  </main>
+
+  <!--insertamos un pequeño script que actualiza automáticamente el año,
+      esto evita tener que modificar el código manualmente cada enero-->
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
