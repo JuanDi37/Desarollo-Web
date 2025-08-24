@@ -127,7 +127,7 @@ nav {
 }
 
 /*definimos el contenedor principal como grid para controlar la disposición de las secciones,
-  empezamos con una sola columna como base mobile-first para garantizar legibilidad en pantallas pequeñas*/
+  dejamos una columna por defecto y activamos dos columnas en tablet para un uso más eficiente del ancho*/
 main {
   display: grid;
   grid-template-columns: 1fr;
@@ -135,12 +135,12 @@ main {
   padding: 0 16px;
 }
 
-/*alineamos la sección de presentación con flexbox para disponer la imagen y el texto, pero en móvil preferimos columna para evitar compresión horizontal*/
+/*alineamos la sección de presentación con flexbox; en tablet ya podemos mostrar imagen y texto en fila sin perder legibilidad*/
 main > section:first-of-type {
   display: flex;
   align-items: center;
   gap: 16px;
-  flex-direction: column; /*mantenemos pila vertical en mobile para priorizar lectura*/
+  flex-direction: column;
 }
 
 main > section:first-of-type img {
@@ -149,21 +149,18 @@ main > section:first-of-type img {
   border-radius: 8px;
 }
 
-/*optimizamos tablas en móviles permitiendo desplazamiento horizontal sin romper el diseño
-  ya que no contamos con un contenedor extra, usamos el propio table como bloque desplazable*/
-@media (max-width: 480px) {
-  /*reducimos tamaño del título para que no haya saltos bruscos*/
-  header h1 { font-size: 1.6rem; }
+/*activamos el modo tablet con dos columnas y pequeños ajustes tipográficos y de espaciado
+  para aprovechar mejor el viewport medio*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  /*pasamos a dos columnas para distribuir secciones y reducir scroll*/
+  main { grid-template-columns: 1fr 1fr; gap: 28px; }
 
-  /*compactamos navegación para que quepa mejor en una línea o dos sin saturar*/
-  nav a { margin: 0 6px; }
+  /*dejamos que cada tarjeta ocupe su celda sin max-width que la limite*/
+  section { margin: 0; max-width: none; padding: 24px; }
 
-  /*ajustamos aire interno para que el contenido no se sienta apretado ni demasiado suelto*/
-  section { padding: 20px; margin: 16px auto; }
+  /*incrementamos un poco la legibilidad general*/
+  body { line-height: 1.75; }
 
-  /*hacemos que la tabla se pueda desplazar si no cabe en ancho, preservando legibilidad de columnas*/
-  table { display: block; overflow-x: auto; white-space: nowrap; }
-
-  /*disminuimos ligeramente el padding de celdas para aprovechar el ancho reducido*/
-  th, td { padding: 10px; }
+  /*mostramos la presentación en fila para un flujo más natural en horizontal*/
+  main > section:first-of-type { flex-direction: row; align-items: center; }
 }
