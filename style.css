@@ -127,7 +127,7 @@ nav {
 }
 
 /*definimos el contenedor principal como grid para controlar la disposición de las secciones,
-  dejamos una columna por defecto y activamos dos columnas en tablet para un uso más eficiente del ancho*/
+  establecemos base de una columna; los puntos de quiebre ajustarán columnas y ritmos*/
 main {
   display: grid;
   grid-template-columns: 1fr;
@@ -135,7 +135,7 @@ main {
   padding: 0 16px;
 }
 
-/*alineamos la sección de presentación con flexbox; en tablet ya podemos mostrar imagen y texto en fila sin perder legibilidad*/
+/*alineamos la sección de presentación con flexbox; en desktop reforzamos distribución horizontal y aire*/
 main > section:first-of-type {
   display: flex;
   align-items: center;
@@ -149,18 +149,24 @@ main > section:first-of-type img {
   border-radius: 8px;
 }
 
-/*activamos el modo tablet con dos columnas y pequeños ajustes tipográficos y de espaciado
-  para aprovechar mejor el viewport medio*/
-@media (min-width: 768px) and (max-width: 1023px) {
-  /*pasamos a dos columnas para distribuir secciones y reducir scroll*/
-  main { grid-template-columns: 1fr 1fr; gap: 28px; }
+/*activamos el modo desktop asegurando dos columnas, mayor separación, tipografía más cómoda
+  y jerarquía más marcada para aprovechar pantallas grandes*/
+@media (min-width: 1024px) {
+  /*dos columnas con mayor respiración entre tarjetas*/
+  main { grid-template-columns: 1fr 1fr; gap: 32px; padding: 0 24px; }
 
-  /*dejamos que cada tarjeta ocupe su celda sin max-width que la limite*/
-  section { margin: 0; max-width: none; padding: 24px; }
+  /*tipografía más grande para mejorar legibilidad en distancias típicas de escritorio*/
+  body { line-height: 1.85; }
+  header h1 { font-size: 2.2rem; }
+  section h2 { font-size: 1.8rem; }
 
-  /*incrementamos un poco la legibilidad general*/
-  body { line-height: 1.75; }
+  /*la sección de presentación se organiza naturalmente en fila con más separación visual*/
+  main > section:first-of-type { flex-direction: row; gap: 20px; }
+  main > section:first-of-type img { width: 140px; }
+}
 
-  /*mostramos la presentación en fila para un flujo más natural en horizontal*/
-  main > section:first-of-type { flex-direction: row; align-items: center; }
+/*afinamos un nivel extra para escritorios anchos, donde podemos permitir más espacio y un ritmo visual más amable sin romper el flujo*/
+@media (min-width: 1280px) {
+  main { gap: 36px; padding: 0 32px; }
+  section { padding: 32px; }
 }
