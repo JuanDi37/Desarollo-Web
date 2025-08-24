@@ -1,4 +1,5 @@
-/*agregamos un estilo general de fuente y fondo*/
+/*definimos un estilo global para el cuerpo manteniendo tipografía clara y agregando un color de fondo neutro
+  que genera contraste con las secciones blancas y mejora la lectura*/
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f7fa;
@@ -8,27 +9,33 @@ body {
   line-height: 1.6;
 }
 
-/*colocamos el encabezado con color de fondo y espaciado*/
+/*ajustamos el encabezado con un azul más oscuro y centramos el contenido
+  para dar sensación de bloque principal bien definido*/
 header {
   background-color: #1e3a8a;
   color: white;
   padding: 16px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /*agregamos una ligera sombra para destacar el header*/
 }
 
-/*ponemos estilo a la navegación dentro del header*/
+/*damos estilo a la navegación y dejamos los enlaces blancos
+  para que resalten sobre el fondo oscuro del header*/
 nav a {
   color: white;
   text-decoration: none;
   margin: 0 8px;
   font-weight: bold;
+  transition: color 0.3s ease; /*hacemos que el cambio de color sea más suave*/
 }
 
 nav a:hover {
   text-decoration: underline;
+  color: #cbd5e1; /*cambiamos a un tono gris claro al pasar el mouse*/
 }
 
-/*colocamos botones con color distintivo*/
+/*definimos un estilo básico para botones con fondo azul y texto blanco,
+  además de un ligero redondeo de esquinas*/
 button {
   background-color: #2563eb;
   color: white;
@@ -36,44 +43,56 @@ button {
   padding: 8px 14px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #1e40af;
+  transform: translateY(-2px); /*agregamos un efecto de elevación al hacer hover*/
 }
 
-/*agregamos estilo a las secciones principales*/
+/*definimos secciones con fondo blanco, bordes redondeados y sombra
+  para que cada bloque se vea como una tarjeta separada*/
 section {
   padding: 20px;
-  margin: 12px auto;
+  margin: 20px auto;
   max-width: 800px;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /*agregamos sombra ligera a cada sección*/
 }
 
-/*colocamos estilo a las tablas*/
+/*estilizamos las tablas para que sean claras y fáciles de leer*/
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
 
+/*definimos bordes finos y espaciado interno en celdas*/
 th, td {
   border: 1px solid #999;
-  padding: 8px;
+  padding: 10px;
   text-align: left;
 }
 
+/*coloreamos la fila del encabezado con azul para destacar títulos*/
 th {
   background-color: #2563eb;
   color: white;
 }
 
-/*agregamos estilo al pie de página*/
+/*aplicamos efecto zebra para mejorar legibilidad en filas*/
+tbody tr:nth-child(even) {
+  background-color: #f0f4f8;
+}
+
+/*centramos y decoramos el pie de página con el mismo azul del header*/
 footer {
   text-align: center;
   padding: 16px;
   background-color: #1e3a8a;
   color: white;
+  margin-top: 20px;
 }
