@@ -161,9 +161,12 @@ main > section:first-of-type {
 }
 
 main > section:first-of-type img {
-  width: 120px;
-  height: auto;
-  border-radius: 8px;
+  /* quitamos el radio propio y definimos tamaño cuadrado; Bootstrap hará el círculo con su clase */
+  /* cambiamos: usamos 150x150 y cover para que la máscara circular se vea bien */
+  width: 150px;         /* cambiamos a 150px para la foto */
+  height: 150px;        /* cambiamos para que sea cuadrada */
+  object-fit: cover;    /* cambiamos para encuadrar bien el rostro */
+  border-radius: 0;     /* cambiamos: dejamos a 0 porque la forma circular la pone Bootstrap */
 }
 
 /*tablet y superiores: ponemos la presentación en fila para un flujo más natural*/
@@ -174,7 +177,8 @@ main > section:first-of-type img {
     gap: 14px;
   }
   main > section:first-of-type img {
-    width: 120px;                 /* mantenemos tamaño estable para evitar saltos */
+    width: 150px;                 /* mantenemos tamaño estable para evitar saltos (cambiamos a 150px) */
+    height: 150px;                /* mantenemos cuadrado */
   }
 }
 

@@ -6,6 +6,8 @@
   <title>Perfil | Juan Diego Letona</title>
   <!--incluimos un link al archivo style.css para separar la estructura del contenido visual,
       de esta manera logramos mantener el html limpio y el css centralizado en un solo lugar-->
+  <!-- añadimos Bootstrap desde CDN para usar utilidades en la imagen -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- añadimos -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,7 +35,9 @@
   <main>
     <!--mostramos una primera sección tipo presentación con foto, nombre, descripción breve y accesos directos-->
     <section>
-      <img src="IMGJD.webp" alt="Foto de Juan Diego Letona" width="120">
+      <!-- añadimos clases de Bootstrap para hacer la foto circular, con marco y sombra -->
+      <img src="IMGJD.webp" alt="Foto de Juan Diego Letona"
+           class="img-fluid rounded-circle border border-3 border-primary shadow object-fit-cover"> <!-- añadimos -->
       <h2>Juan Diego Letona</h2>
       <p>Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
       <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
@@ -159,23 +163,4 @@
     </section>
 
     <!--añadimos extras como la imagen en tamaño completo y otro botón de descarga en pdf,
-        así damos más opciones al usuario sin tener que buscar demasiado-->
-    <section id="extra">
-      <h2>Extras</h2>
-      <a href="IMGJD.webp" target="_blank">Abrir imagen en el navegador</a> |
-      <button onclick="window.print()">Descargar como PDF</button>
-    </section>
-
-    <!--cerramos con un pie de página donde mostramos autoría y ubicación-->
-    <footer>
-      <p>© <span id="y"></span> Juan Diego Letona · Guatemala</p>
-    </footer>
-  </main>
-
-  <!--insertamos un pequeño script que actualiza automáticamente el año,
-      esto evita tener que modificar el código manualmente cada enero-->
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+        así damos más opciones al usua
