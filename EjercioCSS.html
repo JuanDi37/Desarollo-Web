@@ -44,15 +44,22 @@
   <main>
     <!--mostramos una primera sección tipo presentación con foto, nombre, descripción breve y accesos directos-->
     <section>
-      <!-- añadimos clases de Bootstrap para hacer la foto circular, con marco y sombra -->
-      <img src="IMGJD.webp" alt="Foto de Juan Diego Letona"
-           class="img-fluid rounded-circle border border-3 border-primary shadow object-fit-cover"> <!-- añadimos -->
-      <h2>Juan Diego Letona</h2>
-      <p>Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
-      <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
-      <a href="mailto:juanletona@ufm.edu">Contactar</a> |
-      <a href="https://github.com/JuanDi37" target="_blank">GitHub</a> |
-      <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank">LinkedIn</a>
+      <!-- añadimos: usamos un componente Card de Bootstrap para presentar la info de forma elegante -->
+      <div class="card shadow-lg border-0 text-center p-4"> <!-- añadimos -->
+        <div class="card-body"> <!-- añadimos -->
+          <!-- añadimos clases de Bootstrap para hacer la foto circular, con marco y sombra -->
+          <img src="IMGJD.webp" alt="Foto de Juan Diego Letona"
+               class="img-fluid rounded-circle border border-3 border-primary shadow mb-3 object-fit-cover"
+               style="width:150px; height:150px; object-fit:cover;"> <!-- añadimos -->
+          <h2 class="card-title">Juan Diego Letona</h2> <!-- añadimos -->
+          <p class="card-text">Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p> <!-- añadimos -->
+          <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
+          <!-- añadimos: convertimos los enlaces en botones Bootstrap para consistencia visual -->
+          <a href="mailto:juanletona@ufm.edu" class="btn btn-outline-primary btn-sm me-2">Contactar</a> <!-- añadimos -->
+          <a href="https://github.com/JuanDi37" target="_blank" class="btn btn-outline-dark btn-sm me-2">GitHub</a> <!-- añadimos -->
+          <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank" class="btn btn-outline-info btn-sm">LinkedIn</a> <!-- añadimos -->
+        </div> <!-- añadimos -->
+      </div> <!-- añadimos -->
     </section>
 
     <!--creamos la sección de educación donde usamos una tabla,
