@@ -11,7 +11,6 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.7;
-  
 }
 
 header {
@@ -89,11 +88,9 @@ section h2 {
   margin-bottom: 10px;           /* cambiado */
   background: linear-gradient(90deg, #2563eb, #38bdf8);
   -webkit-background-clip: text;
-  background: linear-gradient(90deg, #2563eb, #38bdf8);
-  -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;

@@ -6,7 +6,6 @@
   <title>Perfil | Juan Diego Letona</title>
   <!--incluimos un link al archivo style.css para separar la estructura del contenido visual,
       de esta manera logramos mantener el html limpio y el css centralizado en un solo lugar-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,9 +23,6 @@
       <a href="#github">GitHub</a> |
       <a href="#linkedin">LinkedIn</a> |
       <a href="#email">Email</a>
-      <!-- agregamos bootstrap js para que el menú hamburguesa funcione en telefono -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
       <!--agregamos este botón para poder imprimir o exportar el cv directamente desde el navegador,
           esto resulta útil cuando alguien quiere una copia rápida sin necesidad de otro software-->
       <button onclick="window.print()">Descargar PDF</button>
@@ -36,29 +32,14 @@
   <!--iniciamos la sección principal que contendrá toda la información del perfil y la dividimos en bloques-->
   <main>
     <!--mostramos una primera sección tipo presentación con foto, nombre, descripción breve y accesos directos-->
-    <section class="p-0 border-0 bg-transparent">
-      <div class="card shadow-sm">
-        <div class="row g-0 align-items-center">
-          <div class="col-12 col-md-3 text-center p-4">
-            <img src="IMGJD.webp" 
-                 alt="Foto de Juan Diego Letona" 
-                 class="rounded-circle border border-3 border-primary shadow" 
-                 style="width: 150px; height: 150px; object-fit: cover;">
-          </div>
-          <div class="col-12 col-md-9">
-            <div class="card-body">
-              <h2 class="card-title mb-1">Juan Diego Letona</h2>
-              <p class="card-text mb-3">Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
-              <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
-              <div class="d-flex flex-wrap gap-2">
-                <a href="mailto:juanletona@ufm.edu" class="btn btn-outline-primary">Contactar</a>
-                <a href="https://github.com/JuanDi37" target="_blank" class="btn btn-dark">GitHub</a>
-                <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank" class="btn btn-primary">LinkedIn</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section>
+      <img src="IMGJD.webp" alt="Foto de Juan Diego Letona" width="120">
+      <h2>Juan Diego Letona</h2>
+      <p>Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p>
+      <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
+      <a href="mailto:juanletona@ufm.edu">Contactar</a> |
+      <a href="https://github.com/JuanDi37" target="_blank">GitHub</a> |
+      <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank">LinkedIn</a>
     </section>
 
     <!--creamos la sección de educación donde usamos una tabla,
@@ -140,17 +121,8 @@
       <h2>Lenguajes de programación</h2>
       <ul>
         <li>Compilados: C, C++, C#, Java</li>
-        <div class="progress mb-2">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 80%">80%</div>
-        </div>
         <li>Frontend: JavaScript, TypeScript, HTML, CSS</li>
-        <div class="progress mb-2">
-          <div class="progress-bar bg-info" role="progressbar" style="width: 70%">70%</div>
-        </div>
         <li>Scripting y análisis: Python, R, MATLAB, Octave, Bash, PowerShell</li>
-        <div class="progress mb-2">
-          <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 85%">85%</div>
-        </div>
       </ul>
     </section>
 
@@ -190,11 +162,8 @@
         así damos más opciones al usuario sin tener que buscar demasiado-->
     <section id="extra">
       <h2>Extras</h2>
-      <a href="IMGJD.webp" target="_blank">Abrir imagen en el navegador</a> |<!-- es el boton de abajo-->
-<button onclick="window.print()" 
-        class="btn btn-danger btn-lg shadow">
-  📄 Descargar PDF
-</button>
+      <a href="IMGJD.webp" target="_blank">Abrir imagen en el navegador</a> |
+      <button onclick="window.print()">Descargar como PDF</button>
     </section>
 
     <!--cerramos con un pie de página donde mostramos autoría y ubicación-->
