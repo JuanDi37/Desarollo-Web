@@ -161,12 +161,21 @@ main > section:first-of-type {
 }
 
 main > section:first-of-type img {
-  /* quitamos el radio propio y definimos tamaño cuadrado; Bootstrap hará el círculo con su clase */
-  /* cambiamos: usamos 150x150 y cover para que la máscara circular se vea bien */
   width: 150px;         /* cambiamos a 150px para la foto */
   height: 150px;        /* cambiamos para que sea cuadrada */
   object-fit: cover;    /* cambiamos para encuadrar bien el rostro */
-  border-radius: 0;     /* cambiamos: dejamos a 0 porque la forma circular la pone Bootstrap */
+  border-radius: 0;     /* cambiamos: la forma circular la pone Bootstrap */
+}
+
+/* añadimos: estilo específico para el botón PDF cuando usemos clases de Bootstrap */
+.btn-pdf { /* añadimos */
+  /* mantenemos la idea de botón llamativo pero compatible con .btn de Bootstrap */
+  padding: 10px 18px;
+  font-weight: 700;
+  border-radius: 999px;     /* añadimos: lo hacemos pastilla */
+}
+.btn-pdf .bi { /* añadimos: alineamos el ícono con el texto */
+  vertical-align: -0.1em;
 }
 
 /*tablet y superiores: ponemos la presentación en fila para un flujo más natural*/
