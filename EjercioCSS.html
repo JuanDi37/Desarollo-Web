@@ -18,8 +18,6 @@
   <header>
     <h1>Perfil | Juan Diego Letona</h1>
     <nav>
-      <!--colocamos los enlaces internos que nos permiten movernos por las distintas secciones,
-          preferimos mantenerlos en línea para que sean fáciles de escanear visualmente-->
       <a href="#educacion">Educación</a> |
       <a href="#tecnologias">Tecnologías</a> |
       <a href="#lenguajes">Lenguajes</a> |
@@ -139,11 +137,21 @@
         esto hace que sea más legible y más fácil de encontrar lo que alguien busca-->
     <section id="lenguajes">
       <h2>Lenguajes de programación</h2>
-      <ul>
-        <li>Compilados: C, C++, C#, Java</li>
-        <li>Frontend: JavaScript, TypeScript, HTML, CSS</li>
-        <li>Scripting y análisis: Python, R, MATLAB, Octave, Bash, PowerShell</li>
-      </ul>
+      <!-- añadimos: representamos niveles de dominio con barras de progreso -->
+      <p>Compilados: C, C++, C#, Java</p> <!-- añadimos -->
+      <div class="progress mb-3"> <!-- añadimos -->
+        <div class="progress-bar bg-success" role="progressbar" style="width: 75%">75%</div> <!-- añadimos -->
+      </div> <!-- añadimos -->
+
+      <p>Frontend: JavaScript, TypeScript, HTML, CSS</p> <!-- añadimos -->
+      <div class="progress mb-3"> <!-- añadimos -->
+        <div class="progress-bar bg-info" role="progressbar" style="width: 80%">80%</div> <!-- añadimos -->
+      </div> <!-- añadimos -->
+
+      <p>Scripting y análisis: Python, R, MATLAB, Octave, Bash, PowerShell</p> <!-- añadimos -->
+      <div class="progress mb-3"> <!-- añadimos -->
+        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 70%">70%</div> <!-- añadimos -->
+      </div> <!-- añadimos -->
     </section>
 
     <!--agregamos sección de soft skills para destacar cualidades no técnicas,
