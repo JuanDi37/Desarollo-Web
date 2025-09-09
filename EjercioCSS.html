@@ -12,7 +12,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"> <!-- añadimos -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- añadimos: estilos de modo oscuro sin tocar tu style.css -->
+  <!-- añadimos: estilos de modo oscuro y contraste de botones sin tocar tu style.css -->
   <style>
     html[data-theme="dark"] body { background-color: #0e1525; color: #e5e7eb; }
     html[data-theme="dark"] header { background: linear-gradient(90deg, #132a6b, #1b3fa6); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
@@ -27,6 +27,9 @@
     html[data-theme="dark"] tbody tr:hover { background-color: #13233f; }
     html[data-theme="dark"] footer { background: linear-gradient(90deg, #132a6b, #1b3fa6); color: #e5e7eb; }
     html[data-theme="dark"] .btn-pdf { box-shadow: 0 4px 8px rgba(0,0,0,0.6); }
+    /* añadimos: que los toggles se vean blancos en oscuro */
+    html[data-theme="dark"] .btn-contraste { color:#fff !important; border-color:#a5b4fc !important; }
+    html[data-theme="dark"] .btn-contraste:hover { color:#fff !important; border-color:#c7d2fe !important; }
     @media print { html[data-theme="dark"] body { background: #fff !important; color: #111 !important; } }
   </style>
 </head>
@@ -75,11 +78,21 @@
                style="width:150px; height:150px; object-fit:cover;"> <!-- añadimos -->
           <h2 class="card-title">Juan Diego Letona</h2> <!-- añadimos -->
           <p class="card-text">Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala</p> <!-- añadimos -->
+
+          <!-- añadimos: botón para mostrar/ocultar la información de contacto -->
+          <button id="toggle-contacto"
+                  class="btn btn-outline-secondary btn-sm mb-2 btn-contraste"
+                  type="button">
+            Ocultar contacto
+          </button> <!-- añadimos -->
+
           <!--añadimos links de contacto directo y redes principales para facilitar la interacción-->
           <!-- añadimos: convertimos los enlaces en botones Bootstrap para consistencia visual -->
-          <a href="mailto:juanletona@ufm.edu" class="btn btn-outline-primary btn-sm me-2">Contactar</a> <!-- añadimos -->
-          <a href="https://github.com/JuanDi37" target="_blank" class="btn btn-outline-dark btn-sm me-2">GitHub</a> <!-- añadimos -->
-          <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank" class="btn btn-outline-info btn-sm">LinkedIn</a> <!-- añadimos -->
+          <div id="contenido-contacto"> <!-- añadimos -->
+            <a href="mailto:juanletona@ufm.edu" class="btn btn-outline-primary btn-sm me-2">Contactar</a> <!-- añadimos -->
+            <a href="https://github.com/JuanDi37" target="_blank" class="btn btn-outline-dark btn-sm me-2">GitHub</a> <!-- añadimos -->
+            <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank" class="btn btn-outline-info btn-sm">LinkedIn</a> <!-- añadimos -->
+          </div> <!-- añadimos -->
         </div> <!-- añadimos -->
       </div> <!-- añadimos -->
     </section>
@@ -120,27 +133,37 @@
         reutilizamos la tabla porque también necesitamos columnas con periodo, empresa y puesto-->
     <section id="experiencia">
       <h2>Experiencia Laboral</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Periodo</th>
-            <th>Empresa</th>
-            <th>Puesto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2024 – Actualidad</td>
-            <td>LV Corp</td>
-            <td>Software Engineer · Desarrollo web a la medida</td>
-          </tr>
-          <tr>
-            <td>2022 – 2023</td>
-            <td>Tech Solutions</td>
-            <td>Desarrollador Backend · APIs y microservicios</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <!-- añadimos: botón para mostrar/ocultar la experiencia laboral -->
+      <button id="toggle-experiencia"
+              class="btn btn-outline-secondary btn-sm mb-3 btn-contraste"
+              type="button">
+        Ocultar experiencia
+      </button> <!-- añadimos -->
+
+      <div id="contenido-experiencia"> <!-- añadimos: contenedor de la tabla -->
+        <table>
+          <thead>
+            <tr>
+              <th>Periodo</th>
+              <th>Empresa</th>
+              <th>Puesto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2024 – Actualidad</td>
+              <td>LV Corp</td>
+              <td>Software Engineer · Desarrollo web a la medida</td>
+            </tr>
+            <tr>
+              <td>2022 – 2023</td>
+              <td>Tech Solutions</td>
+              <td>Desarrollador Backend · APIs y microservicios</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> <!-- añadimos -->
     </section>
 
     <!--definimos la sección de tecnologías y preferimos usar listas no ordenadas
@@ -332,7 +355,7 @@
     })();
   </script> <!-- añadimos -->
 
-  <!-- añadimos: cargamos el JS único con saludo backup, toggle de experiencia y modo oscuro -->
+  <!-- añadimos: cargamos el JS único con todos los toggles y tema -->
   <script src="EjJava.js"></script> <!-- añadimos -->
 </body>
 </html>

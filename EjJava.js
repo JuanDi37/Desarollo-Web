@@ -1,5 +1,5 @@
 // EjJava.js
-// añadimos: saludo dinámico (backup), mostrar/ocultar experiencia y modo oscuro/claro persistente
+// añadimos: saludo dinámico (backup), mostrar/ocultar experiencia, mostrar/ocultar contacto y modo oscuro/claro persistente
 
 document.addEventListener('DOMContentLoaded', () => {
   // =======================
@@ -8,9 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     const destino = document.getElementById('saludo-dinamico');
     if (!destino) return;
-
-    // si ya tienes un saludo (por el backend), no tocamos
-    if ((destino.textContent || '').trim().length > 0) return;
+    if ((destino.textContent || '').trim().length > 0) return; // si backend ya escribió, no tocar
 
     const h = new Date().getHours();
     const base = (h >= 5 && h < 12) ? 'Buenos días'
@@ -38,21 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // botón (si no existe, lo creamos debajo del h2)
+    // botón existente o lo creamos
     let btn = expSection.querySelector('#toggle-experiencia, .btn-toggle-experiencia');
     if (!btn && cont) {
       btn = document.createElement('button');
       btn.type = 'button';
       btn.id = 'toggle-experiencia';
-      btn.className = 'btn btn-outline-secondary btn-sm mb-3 btn-toggle-experiencia';
+      btn.className = 'btn btn-outline-secondary btn-sm mb-3 btn-contraste btn-toggle-experiencia';
       btn.textContent = 'Ocultar experiencia';
-
       const h2 = expSection.querySelector('h2');
-      if (h2 && h2.nextSibling) {
-        expSection.insertBefore(btn, h2.nextSibling);
-      } else {
-        expSection.insertBefore(btn, cont);
-      }
+      if (h2 && h2.nextSibling) expSection.insertBefore(btn, h2.nextSibling);
+      else expSection.insertBefore(btn, cont);
     }
 
     if (btn && cont && !btn.dataset.bound) {
@@ -65,6 +59,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  // ==========================================
+  // Botón Mostrar/Ocultar información de contacto
+  // ==========================================
+  (function () {
+    // la info de contacto está en la PRIMERA sección (la Card)
+    const presentacion = document.querySelector('main > section:first-of-type');
+    if (!presentacion) return;
+
+    // contenedor a ocultar/mostrar (los 3 botones de contacto)
+    let cont = presentacion.querySelector('#contenido-contacto, .contenido-contacto');
+    if (!cont) {
+      // envolvemos los 3 enlaces si existen
+      const cardBody = presentacion.querySelector('.card-body');
+      if (!cardBody) return;
+      const enlaces = [...cardBody.querySelectorAll('a.btn')];
+      if (enlaces.length) {
+        cont = document.createElement('div');
+        cont.id = 'contenido-contacto';
+        // insertamos justo antes del primer enlace y movemos todos dentro
+        cardBody.insertBefore(cont, enlaces[0]);
+        enlaces.forEach(a => cont.appendChild(a));
+      }
+    }
+
+    // creamos o reutilizamos el botón de toggle
+    let btn = presentacion.querySelector('#toggle-contacto, .btn-toggle-contacto');
+    if (!btn && cont) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'toggle-contacto';
+      btn.className = 'btn btn-outline-secondary btn-sm mb-2 btn-contraste btn-toggle-contacto';
+      btn.textContent = 'Ocultar contacto';
+
+      const titulo = presentacion.querySelector('.card-title');
+      if (titulo && titulo.parentNode) {
+        titulo.parentNode.insertBefore(btn, titulo.nextSibling); // debajo del h2 de la card
+      } else {
+        presentacion.insertBefore(btn, cont);
+      }
+    }
+
+    if (btn && cont && !btn.dataset.bound) {
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const visible = window.getComputedStyle(cont).display !== 'none';
+        cont.style.display = visible ? 'none' : '';
+        btn.textContent = visible ? 'Mostrar contacto' : 'Ocultar contacto';
+      });
+    }
+  })();
+
   // ======================
   // Modo oscuro / modo claro
   // ======================
@@ -73,11 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('toggle-theme');
 
     function applyTheme(theme) {
-      if (theme === 'dark') {
-        root.setAttribute('data-theme', 'dark');
-      } else {
-        root.removeAttribute('data-theme');
-      }
+      if (theme === 'dark') root.setAttribute('data-theme', 'dark');
+      else root.removeAttribute('data-theme');
       updateBtn();
     }
 
@@ -92,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-pressed', String(dark));
     }
 
-    // preferencia guardada o sistema
     const saved = localStorage.getItem('theme');
     const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(saved ? saved : (sysDark ? 'dark' : 'light'));
@@ -106,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // si NO hay preferencia guardada, seguimos cambios del sistema
     if (!saved && window.matchMedia) {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
       if (!mq._boundEj) {
