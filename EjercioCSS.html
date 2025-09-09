@@ -292,24 +292,30 @@
 
   <!-- añadimos: pedimos el saludo al backend Java (EjJava) y lo insertamos en el header -->
   <script>
-    // añadimos: intentamos obtener el saludo desde un endpoint Java
+    // añadimos: intentamos obtener el saludo personalizado desde un endpoint Java
     //           si el backend no responde, generamos un saludo básico en el cliente
     (function () {
       const destino = document.getElementById('saludo-dinamico');
       if (!destino) return;
 
+      // nombre a mostrar en el saludo (puedes cambiarlo o tomarlo del DOM)
+      const nombre = encodeURIComponent('Juan Diego Letona');
+
       // suponemos un endpoint REST del backend Java que devuelve texto plano
-      // ejemplo: GET /api/saludo  -> "Buenos días y bienvenido a mi CV"
-      fetch('/api/saludo', { cache: 'no-store' })
+      // ejemplo de implementación: GET /api/saludo?nombre=Juan%20Diego%20Letona
+      fetch('/api/saludo?nombre=' + nombre, { cache: 'no-store' })
         .then(r => r.ok ? r.text() : Promise.reject(new Error('HTTP ' + r.status)))
         .then(txt => { destino.textContent = txt; })
         .catch(() => {
           // fallback en el cliente por si el endpoint aún no existe
           const h = new Date().getHours();
           const base = (h >= 5 && h < 12) ? 'Buenos días' : (h < 19 ? 'Buenas tardes' : 'Buenas noches');
-          destino.textContent = base + ' y bienvenido a mi CV';
+          destino.textContent = base + ', Juan Diego Letona';
         });
     })();
   </script> <!-- añadimos -->
+
+  <!-- añadimos: cargamos el JS único con saludo correcto y toggle de experiencia -->
+  <script src="EjJava.js"></script> <!-- añadimos -->
 </body>
 </html>

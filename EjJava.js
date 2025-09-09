@@ -1,62 +1,61 @@
-// EjJava.java
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+// EjJava.js
+// añadimos: saludo dinámico (sin nombre) y botón mostrar/ocultar experiencia, sin quitar nada del HTML
 
-/**
- * Genera un saludo limitado a:
- * "Buenos días y bienvenido a mi CV",
- * "Buenas tardes y bienvenido a mi CV",
- * "Buenas noches y bienvenido a mi CV".
- */
-public final class EjJava {
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Saludo dinámico: "Buenos días/tardes/noches y bienvenido a mi CV"
+  (function () {
+    const destino = document.getElementById('saludo-dinamico');
+    if (!destino) return;
+    const h = new Date().getHours();
+    const base = (h >= 5 && h < 12) ? 'Buenos días'
+               : (h < 19) ? 'Buenas tardes'
+               : 'Buenas noches';
+    // sobrescribimos el saludo para asegurar el formato correcto
+    destino.textContent = base + ' y bienvenido a mi CV';
+  })();
 
-    // zona horaria por defecto (Guatemala)
-    private static final ZoneId ZONA_GT = ZoneId.of("America/Guatemala");
+  // --- Botón Mostrar/Ocultar experiencia (solo en la sección #experiencia dentro de <main>)
+  (function () {
+    const expSection = document.querySelector('main > section#experiencia');
+    if (!expSection) return;
 
-    private EjJava() { /* utilitario: no instanciable */ }
-
-    /**
-     * Devuelve el saludo según la hora actual en Guatemala.
-     */
-    public static String getSaludo() {
-        return getSaludo(ZONA_GT);
+    // contenedor a ocultar/mostrar: reutiliza si existe; si no, envuelve la primera tabla
+    let cont = expSection.querySelector('#contenido-experiencia, .contenido-experiencia');
+    if (!cont) {
+      const tabla = expSection.querySelector('table');
+      if (tabla) {
+        cont = document.createElement('div');
+        cont.className = 'contenido-experiencia';
+        tabla.parentNode.insertBefore(cont, tabla);
+        cont.appendChild(tabla);
+      }
     }
 
-    /**
-     * Devuelve el saludo según la hora actual en la zona indicada.
-     * Si zoneId es null, usa Guatemala.
-     */
-    public static String getSaludo(ZoneId zoneId) {
-        ZoneId zona = (zoneId == null) ? ZONA_GT : zoneId;
-        LocalTime ahora = ZonedDateTime.now(zona).toLocalTime();
-        return getSaludo(ahora);
+    // crear el botón si no existe ya dentro de la misma sección
+    let btn = expSection.querySelector('#toggle-experiencia, .btn-toggle-experiencia');
+    if (!btn && cont) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'toggle-experiencia';
+      btn.className = 'btn btn-outline-secondary btn-sm mb-3 btn-toggle-experiencia';
+      btn.textContent = 'Ocultar experiencia';
+
+      const h2 = expSection.querySelector('h2');
+      if (h2 && h2.nextSibling) {
+        expSection.insertBefore(btn, h2.nextSibling);
+      } else {
+        expSection.insertBefore(btn, cont);
+      }
     }
 
-    /**
-     * Devuelve el saludo para una hora específica (útil para pruebas).
-     */
-    public static String getSaludo(LocalTime hora) {
-        if (hora == null) {
-            throw new IllegalArgumentException("hora no puede ser null");
-        }
-        String base;
-        // Mañana: 05:00–11:59
-        if (!hora.isBefore(LocalTime.of(5, 0)) && hora.isBefore(LocalTime.NOON)) {
-            base = "Buenos días";
-        }
-        // Tarde: 12:00–18:59
-        else if (!hora.isBefore(LocalTime.NOON) && hora.isBefore(LocalTime.of(19, 0))) {
-            base = "Buenas tardes";
-        }
-        // Noche: 19:00–04:59
-        else {
-            base = "Buenas noches";
-        }
-        return base + " y bienvenido a mi CV";
+    // enlazar evento (evitar dobles bindings)
+    if (btn && cont && !btn.dataset.bound) {
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const visible = window.getComputedStyle(cont).display !== 'none';
+        cont.style.display = visible ? 'none' : '';
+        btn.textContent = visible ? 'Mostrar experiencia' : 'Ocultar experiencia';
+      });
     }
-
-    public static void main(String[] args) {
-        System.out.println(getSaludo()); // usa America/Guatemala por defecto
-    }
-}
+  })();
+});
