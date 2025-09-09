@@ -1,5 +1,4 @@
 // EjJava.js
-// añadimos: saludo dinámico (backup), mostrar/ocultar experiencia, mostrar/ocultar contacto y modo oscuro/claro persistente
 
 document.addEventListener('DOMContentLoaded', () => {
   // =======================
@@ -63,27 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Botón Mostrar/Ocultar información de contacto
   // ==========================================
   (function () {
-    // la info de contacto está en la PRIMERA sección (la Card)
     const presentacion = document.querySelector('main > section:first-of-type');
     if (!presentacion) return;
 
-    // contenedor a ocultar/mostrar (los 3 botones de contacto)
     let cont = presentacion.querySelector('#contenido-contacto, .contenido-contacto');
     if (!cont) {
-      // envolvemos los 3 enlaces si existen
       const cardBody = presentacion.querySelector('.card-body');
       if (!cardBody) return;
       const enlaces = [...cardBody.querySelectorAll('a.btn')];
       if (enlaces.length) {
         cont = document.createElement('div');
         cont.id = 'contenido-contacto';
-        // insertamos justo antes del primer enlace y movemos todos dentro
         cardBody.insertBefore(cont, enlaces[0]);
         enlaces.forEach(a => cont.appendChild(a));
       }
     }
 
-    // creamos o reutilizamos el botón de toggle
     let btn = presentacion.querySelector('#toggle-contacto, .btn-toggle-contacto');
     if (!btn && cont) {
       btn = document.createElement('button');
@@ -91,13 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.id = 'toggle-contacto';
       btn.className = 'btn btn-outline-secondary btn-sm mb-2 btn-contraste btn-toggle-contacto';
       btn.textContent = 'Ocultar contacto';
-
       const titulo = presentacion.querySelector('.card-title');
-      if (titulo && titulo.parentNode) {
-        titulo.parentNode.insertBefore(btn, titulo.nextSibling); // debajo del h2 de la card
-      } else {
-        presentacion.insertBefore(btn, cont);
-      }
+      if (titulo && titulo.parentNode) titulo.parentNode.insertBefore(btn, titulo.nextSibling);
+      else presentacion.insertBefore(btn, cont);
     }
 
     if (btn && cont && !btn.dataset.bound) {
@@ -154,5 +144,37 @@ document.addEventListener('DOMContentLoaded', () => {
         mq.addEventListener('change', e => applyTheme(e.matches ? 'dark' : 'light'));
       }
     }
+  })();
+
+  // ==========================================
+  // Buscador de habilidades (Tecnologías)
+  // ==========================================
+  (function () {
+    const input = document.getElementById('buscador-habilidades');
+    const lista = document.querySelector('#tecnologias ul');
+    const info = document.getElementById('resultado-habilidades');
+    if (!input || !lista) return;
+
+    const items = [...lista.querySelectorAll('li')];
+
+    function filtrar() {
+      const q = input.value.trim().toLowerCase();
+      const tokens = q.split(/\s+/).filter(Boolean);
+      let visibles = 0;
+
+      items.forEach(li => {
+        const txt = li.textContent.toLowerCase();
+        const match = tokens.every(t => txt.includes(t));
+        li.style.display = match ? '' : 'none';
+        if (match) visibles++;
+      });
+
+      if (info) {
+        info.textContent = q ? `${visibles} resultado${visibles === 1 ? '' : 's'}` : '';
+      }
+    }
+
+    input.addEventListener('input', filtrar);
+    filtrar(); // estado inicial
   })();
 });

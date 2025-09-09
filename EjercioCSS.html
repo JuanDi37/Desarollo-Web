@@ -170,6 +170,13 @@
         porque es un conjunto de elementos sin jerarquía estricta pero agrupados por categorías-->
     <section id="tecnologias">
       <h2>Tecnologías</h2>
+      <!-- añadimos: buscador de habilidades -->
+      <div class="input-group mb-3"> <!-- añadimos -->
+        <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+        <input id="buscador-habilidades" type="search" class="form-control" placeholder="Buscar habilidades (ej. Docker, AWS, SQL)"> 
+      </div> <!-- añadimos -->
+      <small id="resultado-habilidades" class="text-muted"></small> <!-- añadimos -->
+
       <ul>
         <li>Bases de datos · En memoria: Redis, Memcached</li>
         <li>Bases de datos · Relacionales: PostgreSQL, MySQL, SQLite, SQL Server</li>
@@ -350,12 +357,12 @@
         .catch(() => {
           const h = new Date().getHours();
           const base = (h >= 5 && h < 12) ? 'Buenos días' : (h < 19 ? 'Buenas tardes' : 'Buenas noches');
-          destino.textContent = base + ', Juan Diego Letona';
+          destino.textContent = base + '. Bienvenido a mi perfil!';
         });
     })();
   </script> <!-- añadimos -->
 
-  <!-- añadimos: cargamos el JS único con todos los toggles y tema -->
+  <!-- añadimos: cargamos el JS único con todos los toggles, tema y buscador -->
   <script src="EjJava.js"></script> <!-- añadimos -->
 </body>
 </html>
