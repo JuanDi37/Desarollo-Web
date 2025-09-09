@@ -17,6 +17,8 @@
       esto ayuda a que el usuario siempre tenga acceso rápido a las secciones importantes del cv-->
   <header>
     <h1>Perfil | Juan Diego Letona</h1>
+    <!-- añadimos: espacio para el saludo dinámico que llega desde Java -->
+    <p id="saludo-dinamico" class="mb-2" aria-live="polite"></p> <!-- añadimos -->
     <nav>
       <a href="#educacion">Educación</a> |
       <a href="#tecnologias">Tecnologías</a> |
@@ -287,5 +289,27 @@
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
   </script>
+
+  <!-- añadimos: pedimos el saludo al backend Java (EjJava) y lo insertamos en el header -->
+  <script>
+    // añadimos: intentamos obtener el saludo desde un endpoint Java
+    //           si el backend no responde, generamos un saludo básico en el cliente
+    (function () {
+      const destino = document.getElementById('saludo-dinamico');
+      if (!destino) return;
+
+      // suponemos un endpoint REST del backend Java que devuelve texto plano
+      // ejemplo: GET /api/saludo  -> "Buenos días y bienvenido a mi CV"
+      fetch('/api/saludo', { cache: 'no-store' })
+        .then(r => r.ok ? r.text() : Promise.reject(new Error('HTTP ' + r.status)))
+        .then(txt => { destino.textContent = txt; })
+        .catch(() => {
+          // fallback en el cliente por si el endpoint aún no existe
+          const h = new Date().getHours();
+          const base = (h >= 5 && h < 12) ? 'Buenos días' : (h < 19 ? 'Buenas tardes' : 'Buenas noches');
+          destino.textContent = base + ' y bienvenido a mi CV';
+        });
+    })();
+  </script> <!-- añadimos -->
 </body>
 </html>
