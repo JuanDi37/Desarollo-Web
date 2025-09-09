@@ -11,6 +11,24 @@
   <!-- añadimos Bootstrap Icons para mostrar un ícono en el botón PDF -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"> <!-- añadimos -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- añadimos: estilos de modo oscuro sin tocar tu style.css -->
+  <style>
+    html[data-theme="dark"] body { background-color: #0e1525; color: #e5e7eb; }
+    html[data-theme="dark"] header { background: linear-gradient(90deg, #132a6b, #1b3fa6); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    html[data-theme="dark"] nav a { color: #e5e7eb; }
+    html[data-theme="dark"] nav a:hover { color: #cbd5e1; border-bottom-color: #cbd5e1; }
+    html[data-theme="dark"] section { background-color: #0f1a2b; border-color: #243149; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+    html[data-theme="dark"] section h2 { background: linear-gradient(90deg, #93c5fd, #67e8f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    html[data-theme="dark"] table { box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+    html[data-theme="dark"] th { background: #1f2937; color: #f3f4f6; }
+    html[data-theme="dark"] td { border-color: #243149; }
+    html[data-theme="dark"] tbody tr:nth-child(even) { background-color: #0c1524; }
+    html[data-theme="dark"] tbody tr:hover { background-color: #13233f; }
+    html[data-theme="dark"] footer { background: linear-gradient(90deg, #132a6b, #1b3fa6); color: #e5e7eb; }
+    html[data-theme="dark"] .btn-pdf { box-shadow: 0 4px 8px rgba(0,0,0,0.6); }
+    @media print { html[data-theme="dark"] body { background: #fff !important; color: #111 !important; } }
+  </style>
 </head>
 <body>
   <!--abrimos el encabezado principal donde vamos a mostrar el título de la página y la navegación,
@@ -36,6 +54,10 @@
               data-bs-toggle="tooltip" data-bs-placement="bottom" title="Imprimimos o guardamos como PDF">
         <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
         Descargar PDF
+      </button> <!-- añadimos -->
+      <!-- añadimos: botón de modo oscuro/claro; el JS actualizará su estado -->
+      <button id="toggle-theme" class="btn btn-outline-dark btn-sm d-inline-flex align-items-center gap-2" type="button">
+        <i class="bi bi-moon" aria-hidden="true"></i> Modo oscuro
       </button> <!-- añadimos -->
     </nav>
   </header>
@@ -298,16 +320,11 @@
       const destino = document.getElementById('saludo-dinamico');
       if (!destino) return;
 
-      // nombre a mostrar en el saludo (puedes cambiarlo o tomarlo del DOM)
       const nombre = encodeURIComponent('Juan Diego Letona');
-
-      // suponemos un endpoint REST del backend Java que devuelve texto plano
-      // ejemplo de implementación: GET /api/saludo?nombre=Juan%20Diego%20Letona
       fetch('/api/saludo?nombre=' + nombre, { cache: 'no-store' })
         .then(r => r.ok ? r.text() : Promise.reject(new Error('HTTP ' + r.status)))
         .then(txt => { destino.textContent = txt; })
         .catch(() => {
-          // fallback en el cliente por si el endpoint aún no existe
           const h = new Date().getHours();
           const base = (h >= 5 && h < 12) ? 'Buenos días' : (h < 19 ? 'Buenas tardes' : 'Buenas noches');
           destino.textContent = base + ', Juan Diego Letona';
@@ -315,7 +332,7 @@
     })();
   </script> <!-- añadimos -->
 
-  <!-- añadimos: cargamos el JS único con saludo correcto y toggle de experiencia -->
+  <!-- añadimos: cargamos el JS único con saludo backup, toggle de experiencia y modo oscuro -->
   <script src="EjJava.js"></script> <!-- añadimos -->
 </body>
 </html>
