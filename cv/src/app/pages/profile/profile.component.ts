@@ -9,7 +9,8 @@ import { SoftSkillsComponent } from '../../softskills.component';
 import { LinksComponent } from '../../links.component';
 import { ExtrasComponent } from '../../extras.component';
 import { FooterBarComponent } from '../../footer-bar.component';
-import { ProyectosComponent } from '../../proyectos.component'; // ← NUEVO
+import { ProyectosComponent } from '../../proyectos.component';
+import { CertificacionesComponent } from '../../certificaciones.component'; // ← NUEVO
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +23,8 @@ import { ProyectosComponent } from '../../proyectos.component'; // ← NUEVO
     TecnologiasComponent,
     LenguajesComponent,
     SoftSkillsComponent,
-    ProyectosComponent,       // ← NUEVO
+    ProyectosComponent,
+    CertificacionesComponent,     // ← NUEVO
     LinksComponent,
     ExtrasComponent,
     FooterBarComponent
@@ -46,10 +48,7 @@ export class ProfileComponent {
   private async cargarSaludoSeguro() {
     try {
       const nombre = encodeURIComponent('Juan Diego Letona');
-      const res = await fetch(`/api/saludo?nombre=${nombre}`, {
-        cache: 'no-store',
-        headers: { 'Accept': 'text/plain' }
-      });
+      const res = await fetch(`/api/saludo?nombre=${nombre}`, { cache: 'no-store', headers: { 'Accept': 'text/plain' } });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const ct = (res.headers.get('content-type') || '').toLowerCase();
       const txt = await res.text();
