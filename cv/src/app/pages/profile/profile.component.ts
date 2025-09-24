@@ -1,70 +1,46 @@
-import { Component, inject, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, Renderer2, inject } from '@angular/core';
+import { HeaderBarComponent } from '../../header-bar.component';
+import { PresentacionComponent } from '../../presentacion.component';
+import { EducacionComponent } from '../../educacion.component';
+import { ExperienciaComponent } from '../../experiencia.component';
+import { TecnologiasComponent } from '../../tecnologias.component';
+import { LenguajesComponent } from '../../lenguajes.component';
+import { SoftSkillsComponent } from '../../softskills.component';
+import { LinksComponent } from '../../links.component';
+import { ExtrasComponent } from '../../extras.component';
+import { FooterBarComponent } from '../../footer-bar.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    HeaderBarComponent,
+    PresentacionComponent,
+    EducacionComponent,
+    ExperienciaComponent,
+    TecnologiasComponent,
+    LenguajesComponent,
+    SoftSkillsComponent,
+    LinksComponent,
+    ExtrasComponent,
+    FooterBarComponent
+  ],
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
   private renderer = inject(Renderer2);
 
   year = new Date().getFullYear();
-  showContact = true;
-  showExperience = true;
-  theme: 'light' | 'dark' = 'light';
-
+  theme: 'light'|'dark' = 'light';
   saludo = '';
 
-  // Fallbacks para la imagen: assets -> public -> placeholder
-  private triedAssets = false;
-  private triedPublic = false;
-  onImgError(ev: Event) {
-    const img = ev.target as HTMLImageElement;
-    if (!this.triedAssets) {
-      this.triedAssets = true;
-      img.src = '/IMGJD.webp'; // por si la tenés en public/
-      return;
-    }
-    if (!this.triedPublic) {
-      this.triedPublic = true;
-      img.src = 'https://via.placeholder.com/150';
-      return;
-    }
-  }
-
-  query = '';
-  tecnologias = [
-    'Bases de datos · En memoria: Redis, Memcached',
-    'Bases de datos · Relacionales: PostgreSQL, MySQL, SQLite, SQL Server',
-    'Bases de datos · NoSQL: MongoDB, Cassandra',
-    'Contenedores y DevOps: Docker, Docker Compose',
-    'Servicios en la nube: AWS, S3, Azure',
-    'Diseño y producto: Figma'
-  ];
-
-  get filteredTecnologias() {
-    const q = this.query.trim().toLowerCase();
-    if (!q) return this.tecnologias;
-    const tokens = q.split(/\s+/).filter(Boolean);
-    return this.tecnologias.filter(t => tokens.every(tok => t.toLowerCase().includes(tok)));
-  }
-
-  get resultadosMsg() {
-    return this.query.trim()
-      ? `${this.filteredTecnologias.length} resultado${this.filteredTecnologias.length === 1 ? '' : 's'}`
-      : '';
-  }
-
-  constructor() {
+  constructor(){
+    // tema inicial
     const saved = localStorage.getItem('theme');
-    const prefersDark =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-    this.applyTheme((saved as 'light' | 'dark') || (prefersDark ? 'dark' : 'light'));
+    const prefersDark = typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+    this.applyTheme((saved as 'light'|'dark') || (prefersDark ? 'dark' : 'light'));
 
+    // saludo con validación (evita inyectar index.html)
     this.cargarSaludoSeguro();
   }
 
@@ -88,18 +64,18 @@ export class ProfileComponent {
     }
   }
 
-  toggleTheme() {
+  toggleTheme(){
     const next = this.theme === 'dark' ? 'light' : 'dark';
     this.applyTheme(next);
     localStorage.setItem('theme', next);
   }
 
-  private applyTheme(t: 'light' | 'dark') {
+  private applyTheme(t:'light'|'dark'){
     this.theme = t;
     const html = document.documentElement;
     if (t === 'dark') this.renderer.setAttribute(html, 'data-theme', 'dark');
     else this.renderer.removeAttribute(html, 'data-theme');
   }
 
-  print() { window.print(); }
+  print(){ window.print(); }
 }
