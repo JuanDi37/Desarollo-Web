@@ -9,6 +9,7 @@ import { SoftSkillsComponent } from '../../softskills.component';
 import { LinksComponent } from '../../links.component';
 import { ExtrasComponent } from '../../extras.component';
 import { FooterBarComponent } from '../../footer-bar.component';
+import { ProyectosComponent } from '../../proyectos.component'; // ← NUEVO
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,7 @@ import { FooterBarComponent } from '../../footer-bar.component';
     TecnologiasComponent,
     LenguajesComponent,
     SoftSkillsComponent,
+    ProyectosComponent,       // ← NUEVO
     LinksComponent,
     ExtrasComponent,
     FooterBarComponent
@@ -35,12 +37,9 @@ export class ProfileComponent {
   saludo = '';
 
   constructor(){
-    // tema inicial
     const saved = localStorage.getItem('theme');
     const prefersDark = typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches;
     this.applyTheme((saved as 'light'|'dark') || (prefersDark ? 'dark' : 'light'));
-
-    // saludo con validación (evita inyectar index.html)
     this.cargarSaludoSeguro();
   }
 
