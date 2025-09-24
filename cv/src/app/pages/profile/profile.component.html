@@ -1,0 +1,223 @@
+<header>
+  <h1>Perfil | Juan Diego Letona</h1>
+  <p class="mb-2" aria-live="polite">{{ saludo }}</p>
+
+  <nav>
+    <a href="#educacion">Educación</a> |
+    <a href="#tecnologias">Tecnologías</a> |
+    <a href="#lenguajes">Lenguajes</a> |
+    <a href="#softskills">Soft Skills</a> |
+    <a href="#github">GitHub</a> |
+    <a href="#linkedin">LinkedIn</a> |
+    <a href="#email">Email</a>
+
+    <button
+      (click)="print()"
+      class="btn btn-danger btn-pdf d-inline-flex align-items-center gap-2"
+      type="button"
+      data-bs-toggle="tooltip"
+      data-bs-placement="bottom"
+      title="Imprimimos o guardamos como PDF"
+    >
+      <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
+      Descargar PDF
+    </button>
+
+    <button
+      (click)="toggleTheme()"
+      class="btn btn-sm d-inline-flex align-items-center gap-2"
+      [ngClass]="theme === 'dark' ? 'btn-outline-light' : 'btn-outline-dark'"
+      type="button"
+    >
+      <i class="bi" [ngClass]="theme === 'dark' ? 'bi-sun' : 'bi-moon'" aria-hidden="true"></i>
+      {{ theme === 'dark' ? 'Modo claro' : 'Modo oscuro' }}
+    </button>
+  </nav>
+</header>
+
+<main>
+  <!-- Presentación -->
+  <section>
+    <div class="card shadow-lg border-0 text-center p-4 w-100">
+      <div class="card-body">
+        <img
+          src="assets/IMGJD.webp"
+          alt="Foto de Juan Diego Letona"
+          (error)="onImgError($event)"
+          class="img-fluid rounded-circle border border-3 border-primary shadow mb-3 object-fit-cover"
+          style="width:150px; height:150px; object-fit:cover;"
+        />
+        <h2 class="card-title">Juan Diego Letona</h2>
+        <p class="card-text">
+          Estudiante de Computer Science en la Universidad Francisco Marroquín · Guatemala
+        </p>
+
+        <button
+          (click)="showContact = !showContact"
+          class="btn btn-outline-secondary btn-sm mb-2 btn-contraste"
+          type="button"
+        >
+          {{ showContact ? 'Ocultar contacto' : 'Mostrar contacto' }}
+        </button>
+
+        <div *ngIf="showContact" id="contenido-contacto">
+          <a href="mailto:juanletona@ufm.edu" class="btn btn-outline-primary btn-sm me-2">Contactar</a>
+          <a href="https://github.com/JuanDi37" target="_blank" class="btn btn-outline-dark btn-sm me-2">GitHub</a>
+          <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank" class="btn btn-outline-info btn-sm">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educación -->
+  <section id="educacion">
+    <h2>Educación</h2>
+    <table>
+      <thead>
+        <tr><th>Año</th><th>Institución</th><th>Título</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2022</td><td>Colegio Valle Verde (High School)</td><td>Bachillerato</td></tr>
+        <tr><td>2023 - 2026</td><td>Universidad Francisco Marroquín</td><td>Licenciatura en Computer Science (en curso)</td></tr>
+        <tr><td>2024</td><td>Universidad Francisco Marroquín</td><td>Scrum and Agile Methodologies</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Experiencia -->
+  <section id="experiencia">
+    <h2>Experiencia Laboral</h2>
+    <button
+      (click)="showExperience = !showExperience"
+      class="btn btn-outline-secondary btn-sm mb-3 btn-contraste"
+      type="button"
+    >
+      {{ showExperience ? 'Ocultar experiencia' : 'Mostrar experiencia' }}
+    </button>
+
+    <div *ngIf="showExperience" id="contenido-experiencia">
+      <table>
+        <thead><tr><th>Periodo</th><th>Empresa</th><th>Puesto</th></tr></thead>
+        <tbody>
+          <tr><td>2024 – Actualidad</td><td>LV Corp</td><td>Software Engineer · Desarrollo web a la medida</td></tr>
+          <tr><td>2022 – 2023</td><td>Tech Solutions</td><td>Desarrollador Backend · APIs y microservicios</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Tecnologías -->
+  <section id="tecnologias">
+    <h2>Tecnologías</h2>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+      <input
+        [(ngModel)]="query"
+        type="search"
+        class="form-control"
+        placeholder="Buscar habilidades (ej. Docker, AWS, SQL)"
+      />
+    </div>
+    <small class="text-muted">{{ resultadosMsg }}</small>
+
+    <ul class="mt-2">
+      <li *ngFor="let item of filteredTecnologias">{{ item }}</li>
+    </ul>
+  </section>
+
+  <!-- Lenguajes -->
+  <section id="lenguajes">
+    <h2>Lenguajes de programación</h2>
+
+    <p>Compilados: C, C++, C#, Java</p>
+    <div class="progress mb-3">
+      <div class="progress-bar bg-success" role="progressbar" style="width: 75%">75%</div>
+    </div>
+
+    <p>Frontend: JavaScript, TypeScript, HTML, CSS</p>
+    <div class="progress mb-3">
+      <div class="progress-bar bg-info" role="progressbar" style="width: 80%">80%</div>
+    </div>
+
+    <p>Scripting y análisis: Python, R, MATLAB, Octave, Bash, PowerShell</p>
+    <div class="progress mb-3">
+      <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 70%">70%</div>
+    </div>
+  </section>
+
+  <!-- Soft Skills -->
+  <section id="softskills">
+    <h2>Soft Skills</h2>
+
+    <div class="accordion" id="accordionSoft">
+      <div
+        class="accordion-item"
+        *ngFor="let s of [
+          { id:'One',   t:'Colaboración',        c:'Trabajo en equipo, Comunicación efectiva, Escucha activa', show:true },
+          { id:'Two',   t:'Liderazgo',           c:'Gestión de proyectos, Motivación de equipo, Toma de decisiones' },
+          { id:'Three', t:'Sociabilidad',        c:'Networking, Resolución de conflictos, Empatía' },
+          { id:'Four',  t:'Adaptabilidad',       c:'Aprendizaje continuo, Flexibilidad, Gestión del cambio' },
+          { id:'Five',  t:'Pensamiento crítico', c:'Análisis de problemas, Decisiones informadas, Evaluación objetiva' },
+          { id:'Six',   t:'Gestión del tiempo',  c:'Organización, Priorización, Cumplimiento de plazos' }
+        ]"
+      >
+        <h2 class="accordion-header" [id]="'heading' + s.id">
+          <button
+            class="accordion-button"
+            [class.collapsed]="!s.show"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapse' + s.id"
+          >
+            {{ s.t }}
+          </button>
+        </h2>
+        <div
+          class="accordion-collapse collapse"
+          [class.show]="s.show"
+          [id]="'collapse' + s.id"
+          data-bs-parent="#accordionSoft"
+        >
+          <div class="accordion-body">{{ s.c }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section id="github">
+    <h2>GitHub</h2>
+    <a href="https://github.com/JuanDi37" target="_blank">Visitar perfil en GitHub</a>
+  </section>
+
+  <section id="linkedin">
+    <h2>LinkedIn</h2>
+    <a href="https://www.linkedin.com/in/juandiego-letona/" target="_blank">Visitar perfil en LinkedIn</a>
+  </section>
+
+  <section id="email">
+    <h2>Correo electrónico</h2>
+    <a href="mailto:juanletona@ufm.edu">Enviar correo</a>
+  </section>
+
+  <section id="extra">
+    <h2>Extras</h2>
+    <a href="/IMGJD.webp" target="_blank">Abrir imagen en el navegador</a> |
+    <button
+      (click)="print()"
+      class="btn btn-danger btn-pdf d-inline-flex align-items-center gap-2"
+      type="button"
+      data-bs-toggle="tooltip"
+      data-bs-placement="bottom"
+      title="Imprimimos o guardamos como PDF"
+    >
+      <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
+      Descargar como PDF
+    </button>
+  </section>
+
+  <footer>
+    <p>© {{ year }} Juan Diego Letona · Guatemala</p>
+  </footer>
+</main>
