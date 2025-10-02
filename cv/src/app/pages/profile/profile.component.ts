@@ -1,8 +1,9 @@
 import { Component, Renderer2, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 import { HeaderBarComponent } from '../../header-bar.component';
 import { PresentacionComponent } from '../../presentacion.component';
-import { EducacionComponent } from '../../educacion.component';
-import { ExperienciaComponent } from '../../experiencia.component';
+import { EducacionComponent } from '../../educacion.component'; // ⬅️ Inline en perfil
 import { TecnologiasComponent } from '../../tecnologias.component';
 import { LenguajesComponent } from '../../lenguajes.component';
 import { SoftSkillsComponent } from '../../softskills.component';
@@ -11,22 +12,22 @@ import { ExtrasComponent } from '../../extras.component';
 import { FooterBarComponent } from '../../footer-bar.component';
 import { ProyectosComponent } from '../../proyectos.component';
 import { CertificacionesComponent } from '../../certificaciones.component';
-import { GenericBlocksComponent } from '../../generic-blocks.component'; // ← NUEVO
+import { GenericBlocksComponent } from '../../generic-blocks.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
+    RouterLink,                // para los enlaces a /experience/jobs /studies
     HeaderBarComponent,
     PresentacionComponent,
-    EducacionComponent,
-    ExperienciaComponent,
+    EducacionComponent,        // se muestra inline
     TecnologiasComponent,
     LenguajesComponent,
     SoftSkillsComponent,
     ProyectosComponent,
     CertificacionesComponent,
-    GenericBlocksComponent,       // ← NUEVO
+    GenericBlocksComponent,
     LinksComponent,
     ExtrasComponent,
     FooterBarComponent
@@ -37,13 +38,17 @@ export class ProfileComponent {
   private renderer = inject(Renderer2);
 
   year = new Date().getFullYear();
-  theme: 'light'|'dark' = 'light';
+  theme: 'light' | 'dark' = 'light';
   saludo = '';
 
-  constructor(){
+  constructor() {
     const saved = localStorage.getItem('theme');
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-    this.applyTheme((saved as 'light'|'dark') || (prefersDark ? 'dark' : 'light'));
+    const prefersDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+    this.applyTheme(
+      (saved as 'light' | 'dark') || (prefersDark ? 'dark' : 'light')
+    );
     this.cargarSaludoSeguro();
   }
 
@@ -52,33 +57,42 @@ export class ProfileComponent {
       const nombre = encodeURIComponent('Juan Diego Letona');
       const res = await fetch(`/api/saludo?nombre=${nombre}`, {
         cache: 'no-store',
-        headers: { 'Accept': 'text/plain' }
+        headers: { Accept: 'text/plain' }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const ct = (res.headers.get('content-type') || '').toLowerCase();
       const txt = await res.text();
-      const pareceHtml = /^\s*<!doctype html/i.test(txt) || /<html[\s>]/i.test(txt);
-      if (!ct.startsWith('text/plain') || pareceHtml || !txt.trim()) throw new Error('Respuesta no válida');
+      const pareceHtml =
+        /^\s*<!doctype html/i.test(txt) || /<html[\s>]/i.test(txt);
+      if (!ct.startsWith('text/plain') || pareceHtml || !txt.trim())
+        throw new Error('Respuesta no válida');
       this.saludo = txt.trim();
     } catch {
       const h = new Date().getHours();
-      const base = (h >= 5 && h < 12) ? 'Buenos días' : (h < 19 ? 'Buenas tardes' : 'Buenas noches');
+      const base =
+        h >= 5 && h < 12
+          ? 'Buenos días'
+          : h < 19
+          ? 'Buenas tardes'
+          : 'Buenas noches';
       this.saludo = `${base}. Bienvenido a mi perfil!`;
     }
   }
 
-  toggleTheme(){
+  toggleTheme() {
     const next = this.theme === 'dark' ? 'light' : 'dark';
     this.applyTheme(next);
     localStorage.setItem('theme', next);
   }
 
-  private applyTheme(t:'light'|'dark'){
+  private applyTheme(t: 'light' | 'dark') {
     this.theme = t;
     const html = document.documentElement;
     if (t === 'dark') this.renderer.setAttribute(html, 'data-theme', 'dark');
     else this.renderer.removeAttribute(html, 'data-theme');
   }
 
-  print(){ window.print(); }
+  print() {
+    window.print();
+  }
 }

@@ -1,0 +1,45 @@
+<section id="experience" class="container">
+  <h1 class="mb-3">Experiencia</h1>
+
+  <!-- Vista: Trabajos -->
+  <ng-container *ngIf="view === 'jobs'">
+    <h2>Experiencia Laboral</h2>
+
+    <button
+      (click)="toggleShow()"
+      class="btn btn-outline-secondary btn-sm mb-3 btn-contraste"
+      type="button">
+      {{ show ? 'Ocultar experiencia' : 'Mostrar experiencia' }}
+    </button>
+
+    <div *ngIf="show" id="contenido-experiencia">
+      <table>
+        <thead>
+          <tr><th>Periodo</th><th>Empresa</th><th>Puesto</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024 – Actualidad</td>
+            <td>LV Corp</td>
+            <td>Software Engineer · Desarrollo web a la medida</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <!-- Vista: Estudios -->
+  <ng-container *ngIf="view === 'studies'">
+    <h2>Educación</h2>
+    <table>
+      <thead>
+        <tr><th>Año</th><th>Institución</th><th>Título</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2022</td><td>Colegio Valle Verde (High School)</td><td>Bachillerato</td></tr>
+        <tr><td>2023 - 2026</td><td>Universidad Francisco Marroquín</td><td>Licenciatura en Computer Science (en curso)</td></tr>
+        <tr><td>2024</td><td>Universidad Francisco Marroquín</td><td>Scrum and Agile Methodologies</td></tr>
+      </tbody>
+    </table>
+  </ng-container>
+</section>
