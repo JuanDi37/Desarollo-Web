@@ -1,5 +1,5 @@
 import { Component, Renderer2, inject } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 
 import { HeaderBarComponent } from '../../header-bar.component';
 import { PresentacionComponent } from '../../presentacion.component';
@@ -15,11 +15,13 @@ import { CertificacionesComponent } from '../../certificaciones.component';
 import { GenericBlocksComponent } from '../../generic-blocks.component';
 
 import { DataService } from '../../services/data.service';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
+    CommonModule,     // pipes nativos disponibles por si luego los quieres usar
     NgFor,
     HeaderBarComponent,
     PresentacionComponent,
@@ -32,7 +34,8 @@ import { DataService } from '../../services/data.service';
     GenericBlocksComponent,
     LinksComponent,
     ExtrasComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    CapitalizePipe     // pipe personalizado usado en skills y jobs
   ],
   templateUrl: './profile.component.html'
 })
@@ -44,10 +47,8 @@ export class ProfileComponent {
   theme: 'light' | 'dark' = 'light';
   saludo = '';
 
-  // skills compartidas desde el servicio
+  // datos desde el servicio compartido
   skills: string[] = this.dataService.getSkills();
-
-  // jobs compartidos desde el servicio
   jobs: string[] = this.dataService.getJobs();
 
   constructor() {

@@ -15,15 +15,15 @@
   <section class="skills-section">
     <h2>Skills</h2>
     <div class="skills-list">
-      <span class="skill-pill" *ngFor="let skill of skills">{{ skill }}</span>
+      <span class="skill-pill" *ngFor="let skill of skills">{{ skill | capitalize }}</span>
     </div>
   </section>
 
-  <!-- Jobs desde DataService -->
+  <!-- Jobs desde DataService (sin mayúsculas, con capitalize) -->
   <section class="jobs-section">
     <h2>Jobs</h2>
     <div class="skills-list">
-      <span class="skill-pill job-pill" *ngFor="let job of jobs">{{ job }}</span>
+      <span class="skill-pill job-pill" *ngFor="let job of jobs">{{ job | capitalize }}</span>
     </div>
   </section>
 

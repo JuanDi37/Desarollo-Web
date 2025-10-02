@@ -1,29 +1,23 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 
 @Component({
   selector: 'header-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgClass],
   template: `
 <header>
   <h1>Perfil | Juan Diego Letona</h1>
   <p class="mb-2" aria-live="polite">{{ saludo }}</p>
 
-  <nav>
-    <a href="#educacion">Educación</a> |
-    <a href="#tecnologias">Tecnologías</a> |
-    <a href="#lenguajes">Lenguajes</a> |
-    <a href="#softskills">Soft Skills</a> |
-    <a href="#github">GitHub</a> |
-    <a href="#linkedin">LinkedIn</a> |
-    <a href="#email">Email</a>
-
+  <!-- Acciones (sin enlaces de navegación) -->
+  <div class="d-flex gap-2 justify-content-center flex-wrap">
     <button
-      (click)="print.emit()"
+      (click)="print.emit()
+"
       class="btn btn-danger btn-pdf d-inline-flex align-items-center gap-2"
       type="button"
-      title="Imprimimos o guardamos como PDF">
+      title="Imprimir o guardar como PDF">
       <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
       Descargar PDF
     </button>
@@ -36,13 +30,14 @@ import { CommonModule } from '@angular/common';
       <i class="bi" [ngClass]="theme === 'dark' ? 'bi-sun' : 'bi-moon'" aria-hidden="true"></i>
       {{ theme === 'dark' ? 'Modo claro' : 'Modo oscuro' }}
     </button>
-  </nav>
+  </div>
 </header>
   `
 })
 export class HeaderBarComponent {
-  @Input() saludo = '';
+  @Input() saludo: string = '';
   @Input() theme: 'light' | 'dark' = 'light';
+
   @Output() toggleTheme = new EventEmitter<void>();
   @Output() print = new EventEmitter<void>();
 }
