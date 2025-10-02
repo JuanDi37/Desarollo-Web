@@ -161,3 +161,23 @@ html[data-theme="dark"] .skill-pill:hover {
 }
 .job-pill:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
 .job-pill:active { transform: scale(0.98); }
+
+/* ===== Botones outline: mejor contraste en light mode ===== */
+.btn-outline-dark {
+  color: #1e3a8a !important;
+  border-color: #1e3a8a !important;
+}
+.btn-outline-dark:hover {
+  background-color: #1e3a8a !important;
+  color: #fff !important;
+}
+
+/* (opcional) mejora contraste del outline secondary si lo usas */
+.btn-outline-secondary {
+  color: #1f2937 !important;         /* gris muy oscuro legible */
+  border-color: #475569 !important;  /* slate-600 */
+}
+.btn-outline-secondary:hover {
+  background-color: #475569 !important;
+  color: #fff !important;
+}
