@@ -117,7 +117,6 @@ main > section:first-of-type img {
   button { display: none !important; }
 }
 
-
 /* ===== Skills ===== */
 .skills-section { padding-top: 12px; }
 .skills-list {
@@ -145,3 +144,20 @@ html[data-theme="dark"] .skill-pill:hover {
   box-shadow: 0 6px 14px rgba(0,0,0,0.45);
   filter: brightness(1.05);
 }
+
+/* ===== Jobs ===== */
+.jobs-section { padding-top: 12px; }
+.jobs-list {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px;
+}
+.job-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  color: #ffffff; border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.job-pill:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
+.job-pill:active { transform: scale(0.98); }

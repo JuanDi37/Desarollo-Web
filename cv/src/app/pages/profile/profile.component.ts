@@ -47,6 +47,9 @@ export class ProfileComponent {
   // skills compartidas desde el servicio
   skills: string[] = this.dataService.getSkills();
 
+  // jobs compartidos desde el servicio
+  jobs: string[] = this.dataService.getJobs();
+
   constructor() {
     const saved = localStorage.getItem('theme');
     const prefersDark =

@@ -19,6 +19,14 @@
     </div>
   </section>
 
+  <!-- Jobs desde DataService -->
+  <section class="jobs-section">
+    <h2>Jobs</h2>
+    <div class="skills-list">
+      <span class="skill-pill job-pill" *ngFor="let job of jobs">{{ job }}</span>
+    </div>
+  </section>
+
   <!-- Experiencia ya no se renderiza aquí, vive en /experience -->
   <!-- <experiencia></experiencia> -->
 
