@@ -1,9 +1,9 @@
 import { Component, Renderer2, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NgFor } from '@angular/common';
 
 import { HeaderBarComponent } from '../../header-bar.component';
 import { PresentacionComponent } from '../../presentacion.component';
-import { EducacionComponent } from '../../educacion.component'; // ⬅️ Inline en perfil
+import { EducacionComponent } from '../../educacion.component';
 import { TecnologiasComponent } from '../../tecnologias.component';
 import { LenguajesComponent } from '../../lenguajes.component';
 import { SoftSkillsComponent } from '../../softskills.component';
@@ -14,14 +14,16 @@ import { ProyectosComponent } from '../../proyectos.component';
 import { CertificacionesComponent } from '../../certificaciones.component';
 import { GenericBlocksComponent } from '../../generic-blocks.component';
 
+import { DataService } from '../../services/data.service';
+
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
-    RouterLink,                // para los enlaces a /experience/jobs /studies
+    NgFor,
     HeaderBarComponent,
     PresentacionComponent,
-    EducacionComponent,        // se muestra inline
+    EducacionComponent,
     TecnologiasComponent,
     LenguajesComponent,
     SoftSkillsComponent,
@@ -36,10 +38,14 @@ import { GenericBlocksComponent } from '../../generic-blocks.component';
 })
 export class ProfileComponent {
   private renderer = inject(Renderer2);
+  private dataService = inject(DataService);
 
   year = new Date().getFullYear();
   theme: 'light' | 'dark' = 'light';
   saludo = '';
+
+  // skills compartidas desde el servicio
+  skills: string[] = this.dataService.getSkills();
 
   constructor() {
     const saved = localStorage.getItem('theme');

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'tecnologias',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf],
+  imports: [FormsModule, NgFor],
   template: `
 <section id="tecnologias">
   <h2>Tecnologías</h2>

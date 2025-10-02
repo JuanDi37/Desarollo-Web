@@ -11,6 +11,14 @@
   <!-- Educación inline -->
   <educacion></educacion>
 
+  <!-- Skills desde DataService -->
+  <section class="skills-section">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <span class="skill-pill" *ngFor="let skill of skills">{{ skill }}</span>
+    </div>
+  </section>
+
   <!-- Experiencia ya no se renderiza aquí, vive en /experience -->
   <!-- <experiencia></experiencia> -->
 
