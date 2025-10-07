@@ -13,10 +13,8 @@ import { GithubService, GithubRepo } from './services/github.service';
 export class ProyectosComponent implements OnInit {
   private github = inject(GithubService);
 
-  /** Usuario de GitHub */
   @Input() username = 'JuanDi37';
-
-  @Input() repoNames: string[] = ['Desarollo-Web', 'Chess'];
+  @Input() repoNames: string[] = ['Desarollo-Web', 'Chess', 'Data-Science'];
 
   private branchByRepo: Record<string, string> = {
     'Desarollo-Web': 'TareaCV'
@@ -41,7 +39,6 @@ export class ProyectosComponent implements OnInit {
     });
   }
 
-  /** Devuelve el href final (usa rama forzada si aplica) */
   getHref(r: GithubRepo): string {
     const forcedBranch = this.branchByRepo[r.name];
     return forcedBranch ? `${r.html_url}/tree/${encodeURIComponent(forcedBranch)}` : r.html_url;
