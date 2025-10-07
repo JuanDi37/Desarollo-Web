@@ -14,6 +14,9 @@ import { ProyectosComponent } from '../../proyectos.component';
 import { CertificacionesComponent } from '../../certificaciones.component';
 import { GenericBlocksComponent } from '../../generic-blocks.component';
 
+// ⬇️ NUEVO: tarjeta de clima
+import { WeatherCardComponent } from '../../weather-card.component';
+
 import { DataService } from '../../services/data.service';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
@@ -21,10 +24,12 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
   selector: 'app-profile',
   standalone: true,
   imports: [
-    CommonModule,     // pipes nativos disponibles por si luego los quieres usar
+    CommonModule,
     NgFor,
     HeaderBarComponent,
     PresentacionComponent,
+    // ⬇️ usamos clima en vez de Steam
+    WeatherCardComponent,
     EducacionComponent,
     TecnologiasComponent,
     LenguajesComponent,
@@ -35,7 +40,7 @@ import { CapitalizePipe } from '../../pipes/capitalize.pipe';
     LinksComponent,
     ExtrasComponent,
     FooterBarComponent,
-    CapitalizePipe     // pipe personalizado usado en skills y jobs
+    CapitalizePipe
   ],
   templateUrl: './profile.component.html'
 })
@@ -47,7 +52,6 @@ export class ProfileComponent {
   theme: 'light' | 'dark' = 'light';
   saludo = '';
 
-  // datos desde el servicio compartido
   skills: string[] = this.dataService.getSkills();
   jobs: string[] = this.dataService.getJobs();
 
@@ -56,9 +60,11 @@ export class ProfileComponent {
     const prefersDark =
       typeof window !== 'undefined' &&
       window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+
     this.applyTheme(
       (saved as 'light' | 'dark') || (prefersDark ? 'dark' : 'light')
     );
+
     this.cargarSaludoSeguro();
   }
 

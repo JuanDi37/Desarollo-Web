@@ -8,33 +8,41 @@
 <main>
   <presentacion></presentacion>
 
-  <!-- Educación inline -->
+  <!-- 🔹 Clima para Ciudad de Guatemala -->
+  <weather-card></weather-card>
+
+  <!-- Educación -->
   <educacion></educacion>
 
   <!-- Skills desde DataService -->
   <section class="skills-section">
     <h2>Skills</h2>
     <div class="skills-list">
-      <span class="skill-pill" *ngFor="let skill of skills">{{ skill | capitalize }}</span>
+      <span class="skill-pill" *ngFor="let skill of skills">
+        {{ skill | capitalize }}
+      </span>
     </div>
   </section>
 
-  <!-- Jobs desde DataService (sin mayúsculas, con capitalize) -->
+  <!-- Jobs desde DataService -->
   <section class="jobs-section">
     <h2>Jobs</h2>
     <div class="skills-list">
-      <span class="skill-pill job-pill" *ngFor="let job of jobs">{{ job | capitalize }}</span>
+      <span class="skill-pill job-pill" *ngFor="let job of jobs">
+        {{ job | capitalize }}
+      </span>
     </div>
   </section>
-
-  <!-- Experiencia ya no se renderiza aquí, vive en /experience -->
-  <!-- <experiencia></experiencia> -->
 
   <tecnologias></tecnologias>
   <lenguajes></lenguajes>
   <softskills></softskills>
 
-  <proyectos></proyectos>
+  <proyectos
+    username="JuanDi37"
+    [repoNames]="['Desarollo-Web', 'Chess', 'Data-Science']">
+  </proyectos>
+
   <certificaciones></certificaciones>
 
   <generic-blocks></generic-blocks>
