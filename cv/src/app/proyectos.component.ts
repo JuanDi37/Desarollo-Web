@@ -1,6 +1,7 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 import { GithubService, GithubRepo } from './services/github.service';
 
 @Component({
@@ -15,24 +16,34 @@ export class ProyectosComponent implements OnInit {
   /** Usuario de GitHub */
   @Input() username = 'JuanDi37';
 
-  /** Nombre del repo exacto (sin rama) */
-  @Input() repoName = 'Desarollo-Web';
+  @Input() repoNames: string[] = ['Desarollo-Web', 'Chess'];
+
+  private branchByRepo: Record<string, string> = {
+    'Desarollo-Web': 'TareaCV'
+  };
 
   loading = signal(true);
   error = signal<string | null>(null);
-  repo = signal<GithubRepo | null>(null);
+  repos = signal<GithubRepo[]>([]);
 
   ngOnInit(): void {
-    this.github.getRepo(this.username, this.repoName).subscribe({
-      next: (data) => {
-        this.repo.set(data);
+    const calls = this.repoNames.map((name) => this.github.getRepo(this.username, name));
+    forkJoin(calls).subscribe({
+      next: (results) => {
+        this.repos.set(results);
         this.loading.set(false);
       },
       error: (err) => {
-        this.error.set('No se pudo cargar el proyecto.');
         console.error(err);
+        this.error.set('No se pudieron cargar los proyectos de GitHub.');
         this.loading.set(false);
       }
     });
+  }
+
+  /** Devuelve el href final (usa rama forzada si aplica) */
+  getHref(r: GithubRepo): string {
+    const forcedBranch = this.branchByRepo[r.name];
+    return forcedBranch ? `${r.html_url}/tree/${encodeURIComponent(forcedBranch)}` : r.html_url;
   }
 }

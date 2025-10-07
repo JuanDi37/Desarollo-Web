@@ -14,16 +14,8 @@ export class GithubService {
   private http = inject(HttpClient);
   private readonly API = 'https://api.github.com';
 
-  getUserRepos(username: string, perPage = 6) {
-    return this.http.get<GithubRepo[]>(
-      `${this.API}/users/${username}/repos`,
-      { params: { sort: 'updated', per_page: perPage.toString() } }
-    );
-  }
-
+  /** Obtiene un repo específico: /repos/:user/:repo */
   getRepo(username: string, repoName: string) {
-    return this.http.get<GithubRepo>(
-      `${this.API}/repos/${username}/${repoName}`
-    );
+    return this.http.get<GithubRepo>(`${this.API}/repos/${encodeURIComponent(username)}/${encodeURIComponent(repoName)}`);
   }
 }

@@ -1,17 +1,17 @@
 <section class="container" id="proyectos">
-  <h2 class="mb-3">Proyecto destacado</h2>
+  <h2 class="mb-3">Proyectos</h2>
 
-  <div *ngIf="loading()">Cargando proyecto…</div>
+  <div *ngIf="loading()">Cargando proyectos…</div>
   <div *ngIf="!loading() && error()" class="error">{{ error() }}</div>
 
-  <div *ngIf="!loading() && repo() as r">
-    <h3 class="repo-title">
-      <a [href]="r.html_url + '/tree/TareaCV'" target="_blank" rel="noopener noreferrer">
-        {{ r.name }}
-      </a>
-    </h3>
-    <p class="repo-desc">
-      {{ r.description || 'Sin descripción disponible' }}
-    </p>
-  </div>
+  <ul *ngIf="!loading() && !error()" class="repo-list">
+    <li *ngFor="let r of repos()">
+      <h3 class="repo-title">
+        <a [href]="getHref(r)" target="_blank" rel="noopener noreferrer">
+          {{ r.name }}
+        </a>
+      </h3>
+      <p class="repo-desc">{{ r.description || 'Sin descripción disponible' }}</p>
+    </li>
+  </ul>
 </section>
