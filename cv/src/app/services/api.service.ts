@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'https://api-educacion.onrender.com'; // 👈 tu API online
+  private baseUrl = 'https://api-educacion.onrender.com';
 
   constructor(private http: HttpClient) {}
 
