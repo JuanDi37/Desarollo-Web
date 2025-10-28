@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+html { scroll-behavior: smooth; }
+
+/* Modo oscuro */
+html[data-theme="dark"] body { background-color: #0e1525; color: #e5e7eb; }
+html[data-theme="dark"] header { background: linear-gradient(90deg, #132a6b, #1b3fa6); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+html[data-theme="dark"] nav a { color: #e5e7eb; }
+html[data-theme="dark"] nav a:hover { color: #cbd5e1; border-bottom-color: #cbd5e1; }
+html[data-theme="dark"] section { background-color: #0f1a2b; border-color: #243149; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+html[data-theme="dark"] section h2 { background: linear-gradient(90deg, #93c5fd, #67e8f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+html[data-theme="dark"] table { box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+html[data-theme="dark"] th { background: #1f2937; color: #f3f4f6; }
+html[data-theme="dark"] td { border-color: #243149; }
+html[data-theme="dark"] tbody tr:nth-child(even) { background-color: #0c1524; }
+html[data-theme="dark"] tbody tr:hover { background-color: #13233f; }
+html[data-theme="dark"] footer { background: linear-gradient(90deg, #132a6b, #1b3fa6); color: #e5e7eb; }
+html[data-theme="dark"] .btn-contraste { color:#fff !important; border-color:#a5b4fc !important; }
+html[data-theme="dark"] .btn-contraste:hover { color:#fff !important; border-color:#c7d2fe !important; }
+
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  background-color: #eef2f7;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+header {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: white;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
+
+nav { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+nav a {
+  color: white; text-decoration: none; margin: 0 10px; font-weight: 600;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+nav a:hover { color: #cbd5e1; border-bottom: 2px solid #cbd5e1; }
+
+button {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8); color: white; border: none;
+  padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.3s ease;
+}
+button:hover { background: linear-gradient(90deg, #1d4ed8, #1e3a8a); transform: scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
+button:active { transform: scale(0.98); }
+
+section {
+  padding: 20px; margin: 16px auto; max-width: 900px; background-color: white;
+  border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+section h2 {
+  font-size: 1.6rem; font-weight: 700; margin-bottom: 10px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+table {
+  width: 100%; border-collapse: collapse; margin-top: 12px; overflow: hidden; border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+th { background: #2563eb; color: white; font-weight: 600; }
+tbody tr:nth-child(even) { background-color: #f3f6fa; }
+tbody tr:hover { background-color: #eef5ff; }
+
+footer {
+  text-align: center; padding: 20px; background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: white; margin-top: 30px; font-size: 0.9rem; grid-column: 1 / -1;
+}
+
+a:focus-visible, button:focus-visible { outline: 3px solid #38bdf8; outline-offset: 2px; border-radius: 6px; }
+
+img { max-width: 100%; height: auto; }
+
+/* layout */
+main { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 0 12px; }
+main > section:first-of-type { display: flex; align-items: center; gap: 16px; flex-direction: column; }
+main > section:first-of-type img {
+  width: 150px; height: 150px; object-fit: cover; border-radius: 0; /* Bootstrap hace el círculo */
+}
+
+/* Botón PDF junto con .btn de Bootstrap */
+.btn-pdf { padding: 10px 18px; font-weight: 700; border-radius: 999px; }
+.btn-pdf .bi { vertical-align: -0.1em; }
+
+/* breakpoints */
+@media (min-width: 768px) {
+  main > section:first-of-type { flex-direction: row; align-items: center; gap: 14px; }
+  main > section:first-of-type img { width: 150px; height: 150px; }
+}
+
+@media (min-width: 900px) {
+  main { grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 20px; }
+  section { margin: 0; max-width: none; }
+}
+
+@media (min-width: 1280px) { main { gap: 24px; padding: 0 28px; } }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* print */
+@media print {
+  body { background: #ffffff !important; color: #111 !important; line-height: 1.5; }
+  header, footer { background: none !important; color: #111 !important; box-shadow: none !important; }
+  section { box-shadow: none !important; border: 1px solid #ccc !important; }
+  a { color: #111 !important; text-decoration: underline; }
+  button { display: none !important; }
+}
+
+/* ===== Skills ===== */
+.skills-section { padding-top: 12px; }
+.skills-list {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px;
+}
+.skill-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #ffffff; border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transform: translateZ(0); transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+  will-change: transform, filter;
+}
+.skill-pill:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
+.skill-pill:active { transform: scale(0.98); }
+
+html[data-theme="dark"] .skill-pill {
+  background: linear-gradient(90deg, #1b3fa6, #3aa2d5);
+  color: #e5e7eb; border-color: #243149;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+html[data-theme="dark"] .skill-pill:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.45);
+  filter: brightness(1.05);
+}
+
+/* ===== Jobs ===== */
+.jobs-section { padding-top: 12px; }
+.jobs-list {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px;
+}
+.job-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  color: #ffffff; border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.job-pill:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 4px 10px rgba(0,0,0,0.18); }
+.job-pill:active { transform: scale(0.98); }
+
+/* ===== Botones outline: mejor contraste en light mode ===== */
+.btn-outline-dark {
+  color: #1e3a8a !important;
+  border-color: #1e3a8a !important;
+}
+.btn-outline-dark:hover {
+  background-color: #1e3a8a !important;
+  color: #fff !important;
+}
+
+/* (opcional) mejora contraste del outline secondary si lo usas */
+.btn-outline-secondary {
+  color: #1f2937 !important;         /* gris muy oscuro legible */
+  border-color: #475569 !important;  /* slate-600 */
+}
+.btn-outline-secondary:hover {
+  background-color: #475569 !important;
+  color: #fff !important;
+}

@@ -1,0 +1,54 @@
+<header-bar
+  [saludo]="saludo"
+  [theme]="theme"
+  (toggleTheme)="toggleTheme()"
+  (print)="print()">
+</header-bar>
+
+<main>
+  <presentacion></presentacion>
+
+  <!-- 🔹 Clima para Ciudad de Guatemala -->
+  <weather-card></weather-card>
+
+  <!-- Educación -->
+  <educacion></educacion>
+
+  <!-- Skills desde DataService -->
+  <section class="skills-section">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <span class="skill-pill" *ngFor="let skill of skills">
+        {{ skill | capitalize }}
+      </span>
+    </div>
+  </section>
+
+  <!-- Jobs desde DataService -->
+  <section class="jobs-section">
+    <h2>Jobs</h2>
+    <div class="skills-list">
+      <span class="skill-pill job-pill" *ngFor="let job of jobs">
+        {{ job | capitalize }}
+      </span>
+    </div>
+  </section>
+
+  <tecnologias></tecnologias>
+  <lenguajes></lenguajes>
+  <softskills></softskills>
+
+  <proyectos
+    username="JuanDi37"
+    [repoNames]="['Desarollo-Web', 'Chess', 'Data-Science']">
+  </proyectos>
+
+  <certificaciones></certificaciones>
+
+  <generic-blocks></generic-blocks>
+
+  <links-block></links-block>
+  <extras-block></extras-block>
+</main>
+
+<footer-bar [year]="year"></footer-bar>
